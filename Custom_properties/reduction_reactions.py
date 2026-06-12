@@ -591,7 +591,7 @@ class ReactionBlockData(ReactionBlockDataBase):
                 * eq_term
                 * (
                     b.params.rp_ref
-                    / b.solid_state_ref.params.particle_dia / 2
+                    / (b.solid_state_ref.params.particle_dia / 2)
                 )
                 ** b.params.particle_size_exp[r]
             )
@@ -645,18 +645,28 @@ class ReactionBlockData(ReactionBlockDataBase):
             doc="Solid residence time [s]",
             units=pyunits.s,
         )
+
+        # C0 = (1 - phi) * rho_skel / MW
+        # phi: intraparticle porosity [-]
+        # rho_skel: skeletal density [kg/m^3]
+        # MW: molecular weight of oxide[kg/mol]
+        # ref:Pubchem
+        #C0_Fe2O3 = (1 - 0.27) * 5250.0 / 0.15969 =23999
+        #C0_Fe3O4 = (1 - 0.27) * 5170.0 / 0.23153 =16300
+        #C0_FeO   = (1 - 0.27) * 5700.0 / 0.07184 =57920
+
         self.C0_Fe2O3 = Var(
-            domain=Reals, initialize=24000,
+            domain=Reals, initialize=23999,
             doc="Reference inlet Fe2O3 conc [mol/m3_particle] ",
             units=pyunits.mol / pyunits.m**3,
         )
         self.C0_Fe3O4 = Var(
-            domain=Reals, initialize=16000,
+            domain=Reals, initialize=16300,
             doc="Reference max Fe3O4 conc [mol/m3_particle]",
             units=pyunits.mol / pyunits.m**3,
         )
         self.C0_FeO = Var(
-            domain=Reals, initialize=48000,
+            domain=Reals, initialize=57920,
             doc="Reference max FeO conc [mol/m3_particle]",
             units=pyunits.mol / pyunits.m**3,
         )

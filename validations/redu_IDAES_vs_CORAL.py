@@ -63,7 +63,7 @@ stoich = rxns.rate_reaction_stoichiometry
 # Solid properties
 sol = m_params.sol_props
 mw = {j: value(sol.mw_comp[j]) for j in sol.component_list}
-rho_skel = {j: value(sol.dens_mass_comp_skeletal[j]) for j in sol.component_list}
+RHO_SKEL = {j: value(sol.dens_mass_comp_skeletal[j]) for j in sol.component_list}
 
 
 particle_diam = value(sol.particle_dia)  # m
@@ -78,7 +78,7 @@ comps_koeff_abs = {"R1": 3.0, "R2": 1.0, "R3": 1.0, "R4": 0.25}
 # C0 = (1-porosity) * rho_skel*(1/mw)
 c0_ref = {}
 for comp in ["Fe2O3", "Fe3O4", "FeO"]:
-    c0_ref[comp] = (1.0 / mw[comp]) * (1.0 - particle_porosity) * rho_skel[comp]
+    c0_ref[comp] = (1.0 / mw[comp]) * (1.0 - particle_porosity) * RHO_SKEL[comp]
 
 # Molecular weights
 print(f"  mw: Fe2O3={mw['Fe2O3']:.5f}, Fe3O4={mw['Fe3O4']:.5f}, FeO={mw['FeO']:.5f}, Fe={mw['Fe']:.5f}")
@@ -256,7 +256,7 @@ def eval_idaes_block(T_val, C_gas_dict, rp_um, X_step_dict, active_fe=1.0):
     _eps_rate = 1e-8  # Smoothing constant
     for j in m_params.hetero_rxns.rate_reaction_idx:
         step = _rxn_to_step[j]
-        C0 = value(getattr(b, f"c0_{_c0_reactant[j]}"))
+        C0 = value(getattr(b, f"C0_{_c0_reactant[j]}"))
         kc_val = value(b.kc_full[step])
         X_val = value(getattr(b, f"X_conv_{step}"))
         avr_val = (_eps_rate + (-np.log(1.0 - X_val + _eps_rate)))**0.5
@@ -294,7 +294,7 @@ def numpy_reference(T_val, C_gas_dict, rp_um, X_step_dict, active_fe=None):
         result["keq_red"][r] = keq_calc(T_val, r)
 
     for r in keq_coeff:
-        Keq = result["Keq_red"][r]
+        Keq = result["keq_red"][r]
         result["xi_red"][r] = xi_smooth(
             C_gas_dict.get("H2O", 0), C_gas_dict.get("H2", 0), Keq
         )
@@ -583,7 +583,7 @@ def batch_ode(t, y, C_gas, T, rp_m, active_fe, use_reactions):
         w[comp] = w[comp] / w_sum
 
     # Skeletal density 
-    rho_skel = 1.0 / sum(w[j] / rho_skel[j] for j in comps)
+    rho_skel = 1.0 / sum(w[j] / RHO_SKEL[j] for j in comps)
 
     # rho_bed in kg/m3 
     rho_bed = (1 - particle_porosity) * rho_skel
@@ -595,7 +595,7 @@ def batch_ode(t, y, C_gas, T, rp_m, active_fe, use_reactions):
     mass_loss = 0.0
     for r_id in use_reactions:
         for comp in comps:
-            nu = stoich[(r_id, "Solid", comp)]
+            nu = stoich[(r_id, "Sol", comp)]
             mass_loss += nu * mw[comp] * rates[r_id]
 
     # Normalized mass balance dw/dt = (production - w * mass_loss) / rho_bed
@@ -818,7 +818,7 @@ def main():
     colors = {723: "#1C6FAA", 773: "#ff7f0e", 823: "#2ca02c", 873: "#b31f1f"}
     for T in temps:
         af = 0.70 if T == 873 else 1.0
-        t, X_id, X_co, X_ca, _ = run_batch(T, 0.15, 0.0, 60, active_fe=af)
+        t, X_id, X_co, X_ca= run_batch(T, 0.15, 0.0, 60, active_fe=af)
         lbl = f"{T} K"
         ax.plot(t, X_id, color=colors[T], linewidth=2.5, label=f"IDAES {lbl}")
         ax.plot(t, X_co, color=colors[T], linewidth=1.5, linestyle="-.", alpha=0.8, label=f"CORAL-ODE {lbl}")
@@ -834,7 +834,7 @@ def main():
     H2_fracs = [0.05, 0.15, 0.30, 0.60]
     colors_H2 = {0.05: "#1C6FAA", 0.15: "#ff7f0e", 0.30: "#2ca02c", 0.60: "#b31f1f"}
     for yH2 in H2_fracs:
-        t, X_id, X_co, X_ca, _ = run_batch(823, yH2, 0.0, 60, active_fe=1.0)
+        t, X_id, X_co, X_ca= run_batch(823, yH2, 0.0, 60, active_fe=1.0)
         lbl = f"{int(yH2*100)}% H₂"
         ax.plot(t, X_id, color=colors_H2[yH2], linewidth=2.5, label=f"IDAES {lbl}")
         ax.plot(t, X_co, color=colors_H2[yH2], linewidth=1.5, linestyle="-.", alpha=0.8, label=f"CORAL-ODE {lbl}")
@@ -850,7 +850,7 @@ def main():
     H2O_fracs = [0.0, 0.05, 0.10, 0.15]
     colors_H2O = {0.0: "#1C6FAA", 0.05: "#ff7f0e", 0.10: "#2ca02c", 0.15: "#b31f1f"}
     for yH2O in H2O_fracs:
-        t, X_id, X_co, X_ca, _ = run_batch(873, 0.60, yH2O, 60, active_fe=0.70)
+        t, X_id, X_co, X_ca = run_batch(873, 0.60, yH2O, 60, active_fe=0.70)
         lbl = f"{int(yH2O*100)}% H2O"
         ax.plot(t, X_id, color=colors_H2O[yH2O], linewidth=2.5, label=f"IDAES {lbl}")
         ax.plot(t, X_co, color=colors_H2O[yH2O], linewidth=1.5, linestyle="-.", alpha=0.8, label=f"CORAL-ODE {lbl}")
@@ -866,7 +866,7 @@ def main():
     dp_vals = [60, 115, 175, 225, 350]
     colors_dp = {60: "#1C6FAA", 115: "#ff7f0e", 175: "#2ca02c", 225: "#b31f1f", 350: "#9467bd"}
     for dp in dp_vals:
-        t, X_id, X_co, X_ca, _ = run_batch(773, 0.60, 0.0, dp, active_fe=1.0)
+        t, X_id, X_co, X_ca= run_batch(773, 0.60, 0.0, dp, active_fe=1.0)
         lbl = f"dp={dp}um"
         ax.plot(t, X_id, color=colors_dp[dp], linewidth=2.5, label=f"IDAES {lbl}")
         ax.plot(t, X_co, color=colors_dp[dp], linewidth=1.5, linestyle="-.", alpha=0.8, label=f"CORAL-ODE {lbl}")
@@ -907,7 +907,7 @@ def main():
     print("-" * len(header))
 
     for label, T, yH2, yH2O, dp, af in conditions:
-        t, X_id, X_co, X_ca, _ = run_batch(T, yH2, yH2O, dp, active_fe=af)
+        t, X_id, X_co, X_ca= run_batch(T, yH2, yH2O, dp, active_fe=af)
         rms_id_od = np.sqrt(np.mean((X_id - X_co)**2))
         rms_id_an = np.sqrt(np.mean((X_id - X_ca)**2))
         rms_od_an = np.sqrt(np.mean((X_co - X_ca)**2))

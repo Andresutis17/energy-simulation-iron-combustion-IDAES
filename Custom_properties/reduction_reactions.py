@@ -57,7 +57,7 @@ import idaes.logger as idaeslog
 from idaes.core.util import scaling as iscale
 from idaes.core.solvers import get_solver
 
-__author__ = "Custom package based on IDAES by Chinedu Okoli and CORAL Deliverable D3.1 "
+__author__ = "Custom reduction package based on IDAES by Chinedu Okoli and CORAL Deliverable D3.1 "
 
 _log = idaeslog.getLogger(__name__)
 
@@ -68,8 +68,9 @@ reactant_abs = {"R1": 3.0, "R2": 1.0, "R3": 1.0, "R4": 0.25}
 smooth_avr = 1e-8
 
 # Reaction steps
-step_rxn = {"R1": "I", "R2": "II", "R3": "III", "R4": "II"}
-rxn_step={v: k for k, v in step_rxn.items()}
+rxn_step = {"R1": "I", "R2": "II", "R3": "III", "R4": "II"}
+step_rxn={v: k for k, v in rxn_step.items()}
+
 
 # Reactants of the reactions
 reactants = {"R1": "Fe2O3", "R2": "Fe3O4", "R3": "FeO", "R4": "Fe3O4"}
@@ -80,11 +81,6 @@ reactants = {"R1": "Fe2O3", "R2": "Fe3O4", "R3": "FeO", "R4": "Fe3O4"}
 @declare_process_block_class("ReductionReactionParameterBlock")
 class ReactionParameterData(ReactionParameterBlock):
 
-    """
-
-    Reaction Parameter Block for multi stage reduction reactions
-
-    """
 
     CONFIG = ConfigBlock()
     CONFIG.declare(
@@ -674,7 +670,7 @@ class ReactionBlockData(ReactionBlockDataBase):
         eps = smooth_avr
 
         def rate_rule(b, r):
-            step = step_rxn[r]
+            step = rxn_step[r]
             C0 = getattr(b, f"C0_{reactants[r]}")
             kc = b.kc_full[step]
             X_step = getattr(b, f"X_conv_{step}")

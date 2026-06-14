@@ -396,7 +396,7 @@ class OxiDryReactionBlock(ReactionBlockBase):
         init_log.info_high("States released.")
 
 
-@declare_process_block_class("OxiDryReactionBlock", block_class=OxiDryReactionBlock)
+@declare_process_block_class("ReactionBlock", block_class=OxiDryReactionBlock)
 class ReactionBlockData(ReactionBlockDataBase):
 
     """

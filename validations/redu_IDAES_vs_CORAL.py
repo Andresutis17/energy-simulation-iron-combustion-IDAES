@@ -633,7 +633,7 @@ def X_analytical(t_arr, T, y_H2, y_H2O, rp_um, P_atm=1.0, active_fe_override=Non
     C_H2O = y_H2O * C_total
 
     if T > 860:
-        active_fe = active_fe_override if active_fe_override else 0.70
+        active_fe = active_fe_override if active_fe_override else 1
         # 3 steps route
         kc1 = kc_step_calc(T, C_H2, C_H2O, rp_um, "I", active_fe)
         kc2 = kc_step_calc(T, C_H2, C_H2O, rp_um, "II", active_fe)
@@ -817,8 +817,8 @@ def main():
     temps = [723, 773, 823, 873]
     colors = {723: "#1C6FAA", 773: "#ff7f0e", 823: "#2ca02c", 873: "#b31f1f"}
     for T in temps:
-        af = 0.70 if T == 873 else 1.0
-        t, X_id, X_co, X_ca= run_batch(T, 0.15, 0.0, 60, active_fe=af)
+        # f_Fe NOT. Applied params fit to normalized (0-1) data
+        t, X_id, X_co, X_ca = run_batch(T, 0.15, 0.0, 60, active_fe=1.0)
         lbl = f"{T} K"
         ax.plot(t, X_id, color=colors[T], linewidth=2.5, label=f"IDAES {lbl}")
         ax.plot(t, X_co, color=colors[T], linewidth=1.5, linestyle="-.", alpha=0.8, label=f"CORAL-ODE {lbl}")
@@ -850,7 +850,7 @@ def main():
     H2O_fracs = [0.0, 0.05, 0.10, 0.15]
     colors_H2O = {0.0: "#1C6FAA", 0.05: "#ff7f0e", 0.10: "#2ca02c", 0.15: "#b31f1f"}
     for yH2O in H2O_fracs:
-        t, X_id, X_co, X_ca = run_batch(873, 0.60, yH2O, 60, active_fe=0.70)
+        t, X_id, X_co, X_ca = run_batch(873, 0.60, yH2O, 60, active_fe=1)
         lbl = f"{int(yH2O*100)}% H2O"
         ax.plot(t, X_id, color=colors_H2O[yH2O], linewidth=2.5, label=f"IDAES {lbl}")
         ax.plot(t, X_co, color=colors_H2O[yH2O], linewidth=1.5, linestyle="-.", alpha=0.8, label=f"CORAL-ODE {lbl}")
@@ -891,11 +891,11 @@ def main():
         ("Fig 4.2", 723, 0.15, 0.0, 60, 1.0),
         ("Fig 4.2", 773, 0.15, 0.0, 60, 1.0),
         ("Fig 4.2", 823, 0.15, 0.0, 60, 1.0),
-        ("Fig 4.2", 873, 0.15, 0.0, 60, 0.70),
+        ("Fig 4.2", 873, 0.15, 0.0, 60, 1.0),
         ("Fig 4.3", 823, 0.05, 0.0, 60, 1.0),
         ("Fig 4.3", 823, 0.60, 0.0, 60, 1.0),
-        ("Fig 4.4", 873, 0.60, 0.0, 60, 0.70),
-        ("Fig 4.4", 873, 0.60, 0.15, 60, 0.70),
+        ("Fig 4.4", 873, 0.60, 0.0, 60, 1.0),
+        ("Fig 4.4", 873, 0.60, 0.15, 60, 1.0),
         ("Fig 4.5", 773, 0.60, 0.0, 60, 1.0),
         ("Fig 4.5", 773, 0.60, 0.0, 350, 1.0),
     ]
@@ -925,9 +925,9 @@ def main():
     test_conditions = [
         ("T=723K, 15%H2", 723, 0.15, 0.0, 60, 1.0),
         ("T=823K, 15%H2", 823, 0.15, 0.0, 60, 1.0),
-        ("T=873K, 15%H2", 873, 0.15, 0.0, 60, 0.70),
-        ("T=873K, 60%H2", 873, 0.60, 0.0, 60, 0.70),
-        ("T=873K, 15%H2O", 873, 0.60, 0.15, 60, 0.70),
+        ("T=873K, 15%H2", 873, 0.15, 0.0, 60, 1.0),
+        ("T=873K, 60%H2", 873, 0.60, 0.0, 60, 1.0),
+        ("T=873K, 15%H2O", 873, 0.60, 0.15, 60, 1.0),
         ("T=773K, dp=350", 773, 0.60, 0.0, 350, 1.0),
     ]
 

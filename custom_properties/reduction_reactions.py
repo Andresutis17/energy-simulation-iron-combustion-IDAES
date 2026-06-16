@@ -69,7 +69,9 @@ smooth_avr = 1e-8
 
 # Reaction steps
 rxn_step = {"R1": "I", "R2": "II", "R3": "III", "R4": "II"}
-step_rxn={v: k for k, v in rxn_step.items()}
+_step_rxn_3step = {"I": "R1", "II": "R2", "III": "R3"}  # T >= 860K
+_step_rxn_2step = {"I": "R1", "II": "R4"}               # T <  860K
+_t_step_treshold = 860.0  
 
 
 # Reactants of the reactions
@@ -566,9 +568,9 @@ class ReactionBlockData(ReactionBlockDataBase):
             units=pyunits.s**(-1),
         )
 
-        
+        self._step_to_rxn=_step_rxn_3step
         def kc_full_eqn(b, step):
-            r = step_rxn[step]
+            r =b._step_to_rxn[step]
             s_exp = b.params.rxn_steam_order[r]
             if r in b.params.reversible_rxn_idx and value(s_exp) > 0:
                 eq_term = b.xi_red[r] ** s_exp
@@ -602,6 +604,62 @@ class ReactionBlockData(ReactionBlockDataBase):
             raise
 
     
+
+    """
+
+    Switch the step reaction mapping based on temperature
+    T >= 860K: 3 steps, Step II uses R2 (Fe3O4->FeO, s=0.3)
+    T <  860K: 2 steps, Step II uses R4 (Fe3O4->Fe direct, s=2.2)
+
+        
+    """        
+
+
+    def set_step_regime(self, T):
+
+        T_val = value(T) if not isinstance(T, (int, float)) else T
+        if T_val >= _t_step_treshold:
+            self._step_to_rxn = _step_rxn_3step
+        else:
+            self._step_to_rxn = _step_rxn_2step
+
+        
+        if self.is_property_constructed("kc_full_eqn"):
+            self.del_component(self.kc_full_eqn)
+
+        def kc_full_eqn(b, step):
+            r = b._step_to_rxn.get(step)
+            if r is None:
+                # Step not active in this regime 
+                return b.kc_full[step] == 0.0
+            s_exp = b.params.rxn_steam_order[r]
+            if r in b.params.reversible_rxn_idx and value(s_exp) > 0:
+                eq_term = b.xi_red[r] ** s_exp
+            else:
+                eq_term = 1.0
+            return b.kc_full[step] == (
+                b.k_rxn[r]
+                * (
+                    sqrt(
+                        b.gas_state_ref.dens_mol_comp["H2"] ** 2
+                        + b.params.eps**2
+                    )
+                )
+                ** b.params.rxn_order[r]
+                * eq_term
+                * (
+                    b.params.rp_ref
+                    / (b.solid_state_ref.params.particle_dia / 2)
+                )
+                ** b.params.particle_size_exp[r]
+            )
+
+        self.kc_full_eqn = Constraint(
+            self.params.step_idx, rule=kc_full_eqn
+        )
+
+
+
     # X_conv: CORAL algebraic per-step conversions
     
     def _X_conv_step(self):

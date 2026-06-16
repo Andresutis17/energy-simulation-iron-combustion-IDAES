@@ -94,27 +94,47 @@ print(f"  c0_ref: Fe2O3={c0_ref['Fe2O3']:.0f}, Fe3O4={c0_ref['Fe3O4']:.0f}, FeO=
 # Same speed functions as in hetero_reactions.py
 
 def keq_calc(T, r_id):
-    """Compute equilibrium constant"""
+
+    """
+
+    Compute equilibrium constant
+
+    """
     c = keq_coeff[r_id]
     return exp(c["A"] - c["B"] / T - c["C"] / T**2)
 
 
 def kc_intrinsic(T, r_id, active_fe=1.0):
-    """Arrhenius rate constant [m^(3n)/mol^n/s]"""
+
+    """
+
+    Arrhenius rate constant [m^(3n)/mol^n/s]
+
+    """
     Rg = 8.314
     k = kinetic[r_id]["k0"] * exp(-kinetic[r_id]["Ea"] / (Rg * T)) * active_fe
     return k
 
 
 def xi_smooth(C_H2O, C_H2, Keq, eps=1e-8):
-    """Equilibrium driving force with smoothing"""
+
+    """
+
+    Equilibrium driving force with smoothing
+
+    """
     ratio = np.sqrt(C_H2O**2 + eps**2) / (np.sqrt(C_H2**2 + eps**2) * Keq)
     xi_raw = 1.0 - ratio
     return 0.5 * (xi_raw - eps + np.sqrt((xi_raw - eps)**2 + eps**2)) + eps
 
 
 def C_smooth(C):
-    """Smooth concentration"""
+
+    """
+
+    Smooth concentration
+
+    """
     eps = 1e-8
     return np.sqrt(C**2 + eps**2)
 
@@ -154,12 +174,22 @@ _fFe_high = value(m_params.hetero_rxns.f_Fe_high)
 
 
 def f_Fe_sigmoid(T_val):
-    """Sigmoid with f_Fe values"""
+
+    """
+
+    Sigmoid with f_Fe values
+
+    """
     return _fFe_low + (_fFe_high - _fFe_low) / (1.0 + exp(-(_fFe_sinter - T_val) / _fFe_delta))
 
 
 def set_idaes_state(T_val, C_gas_dict, rp_um):
-    """Fix state variables and evaluate derived properties"""
+
+    """
+
+    Fix state variables and evaluate derived properties
+
+    """
     rp_m = rp_um * 1e-6
     gs = b.gas_state_ref
 
@@ -276,12 +306,62 @@ def eval_idaes_block(T_val, C_gas_dict, rp_um, X_step_dict, active_fe=1.0):
     return result
 
 
-def numpy_reference(T_val, C_gas_dict, rp_um, X_step_dict, active_fe=None):
+def idaes_kc_per_step(T_val, C_gas_dict, rp_um, regime="3step"):
+
     """
-    Uses numpy to evalute reference values, same as hetero_reactions
-    Matches k_rxn exactly via f_Fe_sigmoid
-    (kept for API compatibility with run_batch).
+
+    Evaluate kc for each reduction step using IDAES parameters
+    Computes k_arr manually (f_Fe sigmoid isnt applied)
+    Reads gas state and xi_red via Pyomo Constraints
+    Returns dict {"I": kc_I, "II": kc_II, "III": kc_III}
+
+    """
+    _step_to_rxn_regime = {
+        "I": "R1",
+        "II": "R2" if regime == "3step" else "R4",
+        "III": "R3",
+    }
+    Rg = 8.314
+    eps_val = 1e-8
+
+    set_idaes_state(T_val, C_gas_dict, rp_um)
+
+    # Evaluation of Keq and xi_red 
+    for j in m_params.hetero_rxns.reversible_rxn_idx:
+        calculate_variable_from_constraint(b.Keq_red[j], b.Keq_red_eqn[j])
+    for j in m_params.hetero_rxns.reversible_rxn_idx:
+        calculate_variable_from_constraint(b.xi_red[j], b.xi_red_eqn[j])
+
+    result = {}
+    for step in ["I", "II", "III"]:
+        r = _step_to_rxn_regime[step]
+        # Arrhenius without f_Fe sigmoid
+        k_arr = kinetic[r]["k0"] * exp(-kinetic[r]["Ea"] / (Rg * T_val))
+        # H2 concentration term
+        C_H2 = value(b.gas_state_ref.dens_mol_comp["H2"])
+        C_H2_s = (C_H2**2 + eps_val**2)**0.5
+        h2_term = C_H2_s ** kinetic[r]["n"]
+        # Equilibrium driving force
+        eq_term = 1.0
+        if r in keq_coeff and kinetic[r]["s"] > 0:
+            xi = value(b.xi_red[r])
+            eq_term = xi ** kinetic[r]["s"]
+        # Particle size correction
+        dia_val = value(b.solid_state_ref.params.particle_dia)
+        size_term = (rp_ref / (dia_val / 2)) ** kinetic[r]["r_size"]
+
+        result[step] = k_arr * h2_term * eq_term * size_term
+
+    return result
+
+
+def numpy_reference(T_val, C_gas_dict, rp_um, X_step_dict, active_fe=None):
+
+    """
+
+    Uses numpy to evalute reference values, same as reduction_reactions
     Returns the same structure as eval_idaes_block
+
     """
     rp_m = rp_um * 1e-6
     f_Fe = f_Fe_sigmoid(T_val)
@@ -323,6 +403,7 @@ def numpy_reference(T_val, C_gas_dict, rp_um, X_step_dict, active_fe=None):
 def step_conversion_from_w(w, step):
 
     """
+
     Evaluate per step conversion from mass fractions
     X_I   = 1 - n_Fe2O3 / (n_Fe2O3 + n_Fe3O4 + n_FeO + n_Fe)
     X_II  = 1 - n_Fe3O4 / (n_Fe3O4 + n_FeO + n_Fe)
@@ -351,6 +432,7 @@ def step_conversion_from_w(w, step):
 def avrami_factor(X_step, eps=1e-8):
 
     """
+
     Evaluate Avrami nucleation factor sqrt(eps + -ln(1 - X_step + eps))
     Characteristic S-shape of the 2D nuclei model
 
@@ -404,12 +486,13 @@ def reaction_rate_idaes(w, C_gas, T, rp_m, active_fe=1.0):
 
 
 
-# 3. CORAL per step conversion ODEs 
+# CORAL per step conversion ODEs 
 
 
 def kc_step_calc(T, C_H2, C_H2O, rp_um, step, active_fe=1.0):
 
     """
+
     Evaluate the apparent kinetic constant kc [s^-1] for a reduction step
     
     """
@@ -493,11 +576,13 @@ def coral_conversion_ode(t, y, T, y_H2, y_H2O, rp_um, active_fe=1.0, regime="3st
 def mass_fractions_from_X(X_I, X_II, X_III):
 
     """
+
     Obtain solid mass fractions from per step conversions.
     Maps CORAL per step conversions to physical composition
     Based on stoichiometric mass balance for 3 mol Fe2O3 initial
 
     """
+
     # Moles of each species. 3 moles of Fe2O3, so 6 Fe atoms
     m_Fe2O3 = 3 * (1 - X_I) * mw["Fe2O3"]
     m_Fe3O4 = 2 * X_I * (1 - X_II) * mw["Fe3O4"]
@@ -568,6 +653,7 @@ def conversion_from_w(w, w_Al2O3=0.0):
 def batch_ode(t, y, C_gas, T, rp_m, active_fe, use_reactions):
 
     """
+
     Evaluates how the solid mass fractions of Fe2O3, Fe3O4, FeO and Fe change over time in a batch reactor
     The fractions are normalized to sum to 1 because losing oxygen reduces the total solid mass
 
@@ -624,10 +710,11 @@ def X_analytical(t_arr, T, y_H2, y_H2O, rp_um, P_atm=1.0, active_fe_override=Non
     """
 
     Analytical conversion X(t) using 2D Nuclei model
-    Uses kc_step_calc(), same hetero_reactions params + smoothing as reaction_rate_idaes
+    Uses kc_step_calc(), same reduction_reactions params + smoothing as reaction_rate_idaes
     so it matches ODE and mass-action curves exactly
 
     """
+
     C_total = P_atm * 101325 / (8.314 * T)
     C_H2 = y_H2 * C_total
     C_H2O = y_H2O * C_total
@@ -733,43 +820,52 @@ def run_batch(T, y_H2, y_H2O, rp_um, active_fe=1.0, t_max=1800, label=""):
     rp_m = rp_um * 1e-6
 
     # Initial mass fractions, TGA conditions
-    w_Al2O3 = 0.0
-    w_Fe2O3_init = 1.0
-    w_Fe3O4_init = 0.0
+    rp_m = rp_um * 1e-6
 
-    
-    use_reactions = ["R1"]
-    regime = "3step"
-    if T > 860:
-        use_reactions += ["R2", "R3"]
-    else:
-        use_reactions += ["R4"]
-        regime = "2step"
+    # Select regime 3 steps if T >= 860K , 2 steps if not
+    regime = "3step" if T > 860 else "2step"
 
-    # Initial state 
-    y0 = np.array([w_Fe2O3_init, w_Fe3O4_init, 0.0, 0.0])
-
+    # Time
     # Time
     t_span = (0, t_max)
     t_eval = np.linspace(0, t_max, 500)
 
-    # Curve 1: IDAES mass-action ODE 
-    def ode_func(t, y):
-        return batch_ode(t, y, C_gas, T, rp_m, active_fe, use_reactions)
+    # Curve 1: IDAES perstep ODE 
+    # Same per step ODE formulation as CORAL ODE, but kc evaluated
+    # through IDAES parameter block (Pyomo). f_Fe sigmoid isnt applied
+    kc_idaes = idaes_kc_per_step(T, C_gas, rp_um, regime)
+
+    y0_idaes = np.array([1e-15, 1e-15, 1e-15])
+    def idaes_ode_func(t, y):
+        X_I, X_II, X_III = np.clip(y, 1e-15, 1.0 - 1e-8)
+        eps = 1e-8
+        avr = lambda X: np.sqrt(eps + np.maximum(-np.log(1.0 - X + eps), eps))
+        if regime == "3step":
+            return np.array([
+                2 * kc_idaes["I"] * (1 - X_I) * avr(X_I),
+                2 * kc_idaes["II"] * (1 - X_II) * avr(X_II),
+                2 * kc_idaes["III"] * (1 - X_III) * avr(X_III),
+            ])
+        else:
+            return np.array([
+                2 * kc_idaes["I"] * (1 - X_I) * avr(X_I),
+                2 * kc_idaes["II"] * (1 - X_II) * avr(X_II),
+                0.0,
+            ])
 
     try:
-        sol_mass = solve_ivp(ode_func, t_span, y0, t_eval=t_eval, method="BDF",
-                             rtol=1e-8, atol=1e-12, max_step=10.0)
+        sol_idaes = solve_ivp(idaes_ode_func, t_span, y0_idaes, t_eval=t_eval,
+                             method="BDF", rtol=1e-10, atol=1e-12, max_step=5.0)
     except Exception:
-        sol_mass = solve_ivp(ode_func, t_span, y0, t_eval=t_eval, method="RK45",
-                             rtol=1e-8, atol=1e-10)
+        sol_idaes = solve_ivp(idaes_ode_func, t_span, y0_idaes, t_eval=t_eval,
+                             method="RK45", rtol=1e-10, atol=1e-12)
 
-    x_idaes = np.array([
-        conversion_from_w(
-            {comps[i]: sol_mass.y[i, k] for i in range(4)},
-            w_Al2O3
-        )
-        for k in range(sol_mass.y.shape[1])
+    # X_global
+    X_IDAES = np.array([
+        0.11 * sol_idaes.y[0, k] + 0.22 * sol_idaes.y[1, k] + 0.67 * sol_idaes.y[2, k]
+        if regime == "3step"
+        else 0.11 * sol_idaes.y[0, k] + 0.89 * sol_idaes.y[1, k]
+        for k in range(sol_idaes.y.shape[1])
     ])
 
     # Curve 2: CORAL per step ODE 
@@ -799,7 +895,7 @@ def run_batch(T, y_H2, y_H2O, rp_um, active_fe=1.0, t_max=1800, label=""):
     # Curve 3: CORAL analytical 
     x_coral_analytical = X_analytical(t_eval, T, y_H2, y_H2O, rp_um, P_atm, active_fe)
 
-    return t_eval, x_idaes, x_coral_ode, x_coral_analytical
+    return t_eval, X_IDAES, x_coral_ode, x_coral_analytical
 
 
 
@@ -817,7 +913,7 @@ def main():
     temps = [723, 773, 823, 873]
     colors = {723: "#1C6FAA", 773: "#ff7f0e", 823: "#2ca02c", 873: "#b31f1f"}
     for T in temps:
-        # f_Fe NOT. Applied params fit to normalized (0-1) data
+        # f_Fe isnt applied. Normalized (0-1) data
         t, X_id, X_co, X_ca = run_batch(T, 0.15, 0.0, 60, active_fe=1.0)
         lbl = f"{T} K"
         ax.plot(t, X_id, color=colors[T], linewidth=2.5, label=f"IDAES {lbl}")

@@ -277,13 +277,17 @@ class ReactionParameterData(ReactionParameterBlock):
         obj.add_properties(
             {
                 "k_rxn": {"method": "_k_rxn"},
+                "reaction_rate": {"method": "_reaction_rate"},
+            }
+        )
+        obj.define_custom_properties(
+            {
                 "Keq_red": {"method": "_Keq_red"},
                 "xi_red": {"method": "_xi_red"},
                 "kc_full": {"method": "_kc_full"},
                 "X_conv_I": {"method": "_X_conv_step"},
                 "X_conv_II": {"method": "_X_conv_step"},
                 "X_conv_III": {"method": "_X_conv_step"},
-                "reaction_rate": {"method": "_reaction_rate"},
                 "tau_residence": {"method": "_reaction_rate"},
                 "C0_Fe2O3": {"method": "_reaction_rate"},
                 "C0_Fe3O4": {"method": "_reaction_rate"},

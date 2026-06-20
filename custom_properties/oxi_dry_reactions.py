@@ -129,14 +129,6 @@ class ReactionParameterData(ReactionParameterBlock):
             doc="Scale factor for reaction eqn",
         )
 
-        
-        self.particle_dia = Var(
-            domain=Reals, initialize=60e-6,
-            doc="Particle diameter [m]", 
-            units=pyunits.m,
-        )
-        self.particle_dia.fix()
-
        
         self.rp_ref = Param(
             default=30e-6, mutable=True,
@@ -171,6 +163,7 @@ class ReactionParameterData(ReactionParameterBlock):
 
         
 
+
         #Step II: Diffusion control
         
         
@@ -204,6 +197,7 @@ class ReactionParameterData(ReactionParameterBlock):
             doc="Particle size exponent [-]",
             units=pyunits.dimensionless,
         )
+
 
 
         
@@ -260,14 +254,14 @@ class ReactionParameterData(ReactionParameterBlock):
 
     @classmethod
     def define_metadata(cls, obj):
-        obj.define_custom_properties(
-            {
-                "OC_conv": {"method": "_OC_conv", "units": None},
-            }
-        )
         obj.add_properties(
             {
                 "reaction_rate": {"method": "_reaction_rate"},
+            }
+        )
+        obj.define_custom_properties(
+            {
+                "OC_conv": {"method": "_OC_conv", "units": None},
                 "k_chr": {"method": "_k_chr"},
                 "D_eff": {"method": "_D_eff"},
                 "X_chr": {"method": "_X_chr"},

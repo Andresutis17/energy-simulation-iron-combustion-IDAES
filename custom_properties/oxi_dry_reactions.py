@@ -16,7 +16,7 @@ from pyomo.environ import (
     Param,
     Reals,
     Set,
-    tanh,
+    atan,
     value,
     Var,
     units as pyunits,
@@ -129,7 +129,6 @@ class ReactionParameterData(ReactionParameterBlock):
             doc="Scale factor for reaction eqn",
         )
 
-       
         self.rp_ref = Param(
             default=30e-6, mutable=True,
             doc="Reference particle radius [m]",
@@ -137,6 +136,7 @@ class ReactionParameterData(ReactionParameterBlock):
         )
 
         
+
         # Step I: Chemical reaction control 
         
         
@@ -342,19 +342,27 @@ class OxiDryReactionBlock(ReactionBlockBase):
             if hasattr(k, "X_chr_eqn"):
                 calculate_variable_from_constraint(k.X_chr, k.X_chr_eqn)
 
-            # Rate components dXdt_I, dXdt_II, sigmoid_w
-            if hasattr(k, "dXdt_I_eqn"):
-                calculate_variable_from_constraint(k.dXdt_I, k.dXdt_I_eqn)
-            if hasattr(k, "dXdt_II_eqn"):
-                calculate_variable_from_constraint(k.dXdt_II, k.dXdt_II_eqn)
-            if hasattr(k, "sigmoid_w_eqn"):
-                calculate_variable_from_constraint(k.sigmoid_w, k.sigmoid_w_eqn)
-
             # OC_conv algebraic from mass fractions
             if hasattr(k, "OC_conv_eqn"):
                 calculate_variable_from_constraint(k.OC_conv, k.OC_conv_eqn)
 
-            # Reeaction_rate
+            # Rate components dXdt_I, dXdt_II, sigmoid_w
+            if hasattr(k, "dXdt_I_eqn"):
+                calculate_variable_from_constraint(k.dXdt_I, k.dXdt_I_eqn)
+            if hasattr(k, "dXdt_II_eqn"):
+                try:
+                    calculate_variable_from_constraint(k.dXdt_II, k.dXdt_II_eqn)
+                except Exception:
+                    pass  # Solver will solve
+            if hasattr(k, "sigmoid_w_eqn"):
+                try:
+                    calculate_variable_from_constraint(k.sigmoid_w, k.sigmoid_w_eqn)
+                except Exception:
+                    pass  # Solver will solve
+
+            
+
+            # Reaction_rate
             if hasattr(k, "gen_rate_expression"):
                 for j in k.params.rate_reaction_idx:
                     calculate_variable_from_constraint(
@@ -369,7 +377,14 @@ class OxiDryReactionBlock(ReactionBlockBase):
         if free_vars > 0:
             opt = get_solver(solver, optarg)
             with idaeslog.solver_log(solve_log, idaeslog.DEBUG) as slc:
-                res = solve_indexed_blocks(opt, [blk], tee=slc.tee)
+                try:
+                    res = solve_indexed_blocks(opt, [blk], tee=slc.tee)
+                except (ValueError, Exception):
+                    init_log.warning(
+                        "Reactions solver returned error during initialization "
+                        "Using solver"
+                    )
+                    res = "error"
         else:
             res = ""
         init_log.info_high(
@@ -449,7 +464,7 @@ class ReactionBlockData(ReactionBlockDataBase):
     
     def _OC_conv(self):
         self.OC_conv = Var(
-            domain=Reals, initialize=0.0, bounds=(0, 1),
+            domain=Reals, initialize=0.0, bounds=(-1e-6, 1),
             doc="Fraction of Fe converted to Fe2O3 [-]",
             units=pyunits.dimensionless,
         )
@@ -572,17 +587,17 @@ class ReactionBlockData(ReactionBlockDataBase):
     
     def _rate_components(self):
         self.C_O2_smooth = Var(
-            domain=Reals, initialize=0.5,
+            domain=Reals, initialize=1.0,
             doc="Smoothed O2 concentration [mol/m3]",
             units=pyunits.mol / pyunits.m**3,
         )
         self.dXdt_I = Var(
-            domain=Reals, initialize=0.01,
+            domain=Reals, initialize=0.005,
             doc="Rate dX/dt Step I [1/s] ",
             units=pyunits.s**(-1),
         )
         self.dXdt_II = Var(
-            domain=Reals, initialize=0.001,
+            domain=Reals, initialize=1e-4,
             doc="Rate dX/dt Step II [1/s] ",
             units=pyunits.s**(-1),
         )
@@ -622,6 +637,10 @@ class ReactionBlockData(ReactionBlockDataBase):
             X_dif = (X_dif_raw**2 + (eps_x * 0.1) ** 2) ** 0.5
             omXdif = 1 - X_dif + eps_x
 
+            # Guarantees omXdif >= delta/2 to avoid singularity in omXdif^(5/3)
+            delta = 2e-3
+            omXdif = (omXdif + (omXdif**2 + delta**2) ** 0.5) / 2.0
+
             dXdif_dt = (
                 (3.0 / (2.0 * tau_dif))
                 * omXdif ** (5.0 / 3.0)
@@ -629,11 +648,19 @@ class ReactionBlockData(ReactionBlockDataBase):
             )
             return b.dXdt_II == (1 - X_chr) * dXdif_dt
         
+
         # Sigmoid for a smoorh transition
         def sigmoid_w_eqn(b):
-            return b.sigmoid_w == 0.5 * (
-                1 + tanh((b.OC_conv - b.X_chr) / b.params.delta_smooth)
+            delta = b.params.delta_smooth
+            s = (b.OC_conv - b.X_chr) / delta
+
+            # Atan sigmoid for smooth SCM to ZLT transition 
+            return b.sigmoid_w == (
+                0.5
+                + (1.0 / 3.14159265359)
+                * atan((b.OC_conv - b.X_chr) / delta * 3.14159265359 / 2)
             )
+            
 
         for name, rule in [
             ("C_O2_smooth_eqn", C_O2_smooth_eqn),

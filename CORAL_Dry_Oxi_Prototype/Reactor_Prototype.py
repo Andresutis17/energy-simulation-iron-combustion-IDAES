@@ -85,7 +85,6 @@ def main():
     m.fs.solid_properties.particle_dia.fix(particle_dia)
     # umf = 0.0396 m/s to find convergence
     m.fs.solid_properties.velocity_mf.fix(0.0396)
-    m.fs.oxi_dry_reactions.grain_radius.fix(750e-6) # [m]
     m.fs.BFB.number_orifice.fix(n_orifice)
     m.fs.BFB.bed_diameter.fix(bed_dia)
     m.fs.BFB.bed_height.fix(bed_height)

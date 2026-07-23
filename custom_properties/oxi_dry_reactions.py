@@ -695,15 +695,26 @@ class ReactionBlockData(ReactionBlockDataBase):
 
             dXdt = (1 - b.sigmoid_w) * b.dXdt_I + b.sigmoid_w * b.dXdt_II
 
-            n_Fe_vol = (
-                (1 - b.solid_state_ref.particle_porosity)
-                * b.solid_state_ref.dens_mass_skeletal
-                * b.solid_state_ref.mass_frac_comp["Fe"]
-                / b.solid_state_ref.params.mw_comp["Fe"]
+            # Total atoms of Fe concentration 
+            # X  is defined (CORAL Eq. 2.1) as the fraction of total
+            # Fe atoms that have been oxidized to Fe2O3
+            # So the molar consumption rate of Fe atoms is:
+            #  r_Fe = n_Fe_total * dX/dt
+            #  The stoichiometry is 2 Fe + 1.5 O2 -> Fe2O3, so 1 mol of
+            # reaction consumes 2 mol of Fe. So, the reaction rate is
+            #  r_rxn = r_Fe / 2 = (n_Fe_total / 2) * dX/dt
+            ssr = b.solid_state_ref
+            n_Fe_total = (
+                (1 - ssr.particle_porosity)
+                * ssr.dens_mass_skeletal
+                * (
+                    ssr.mass_frac_comp["Fe"] / ssr.params.mw_comp["Fe"]
+                    + 2.0 * ssr.mass_frac_comp["Fe2O3"] / ssr.params.mw_comp["Fe2O3"]
+                )
             )
 
             return b.reaction_rate[r] == b.params._scale_factor_rxn * (
-                dXdt * n_Fe_vol / 2.0
+                dXdt * n_Fe_total / 2.0
             )  
 
         try:

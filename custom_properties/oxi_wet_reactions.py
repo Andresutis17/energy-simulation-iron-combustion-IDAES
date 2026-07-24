@@ -18,6 +18,8 @@ from pyomo.environ import (
     Reals,
     Set,
     Var,
+    sqrt,
+    log,
     units as pyunits,
 )
 from pyomo.util.calc_var_value import calculate_variable_from_constraint
@@ -374,6 +376,7 @@ class OxiWetReactionBlockData(ReactionBlockDataBase):
             units=pyunits.mol / pyunits.m**3 / pyunits.s,
         )
 
+        # Solid reactant concentration C_solid [mol/m3] and reaction orders ns, ng
         def rate_rule(b, r):
             ns = b.params.rxn_order_solid[r]
             ng = b.params.rxn_order_H2O[r]
@@ -386,7 +389,17 @@ class OxiWetReactionBlockData(ReactionBlockDataBase):
             )
             C_H2O = b.gas_state_ref.dens_mol_comp["H2O"]
 
-            return b.reaction_rate[r] == b.k_rxn[r] * C_solid**ns * C_H2O**ng
+            # Smoothed H2O concentration to avoid negative values
+            eps = b.params.eps
+            C_H2O_s = sqrt(C_H2O**2 + eps**2)
+
+            # Fractional H2O order exp((ng-1)*log(C_H2O_s/C_ref)) on a dimensionless ratio
+            # So k*C_solid*C_H2O**ng with C_ref=1 mol/m3 
+            C_ref = 1.0 * pyunits.mol / pyunits.m**3
+            return b.reaction_rate[r] == (
+                b.k_rxn[r] * C_solid * C_H2O_s
+                * exp((ng - 1.0) * log(C_H2O_s / C_ref))
+            )
 
         try:
             self.gen_rate_expression = Constraint(

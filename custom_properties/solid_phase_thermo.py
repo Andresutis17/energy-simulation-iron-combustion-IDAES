@@ -245,7 +245,7 @@ class PhysicalParameterData(PhysicalParameterBlock):
 
         self.particle_dia = Var(
             domain=Reals,
-            initialize=1.5e-3,
+            initialize=60e-6,
             doc="Diameter of solid particles [m]",
             units=pyunits.m,
         )
@@ -255,7 +255,7 @@ class PhysicalParameterData(PhysicalParameterBlock):
         # Minimum fluidization velocity - EPAT value used for Davidson model
         self.velocity_mf = Var(
             domain=Reals,
-            initialize=0.039624,
+            initialize=0.00356,
             doc="Velocity at minimum fluidization [m/s]",
             units=pyunits.m / pyunits.s,
         )
@@ -265,7 +265,7 @@ class PhysicalParameterData(PhysicalParameterBlock):
         # estimate from ergun equation results (0.4) are suspicious
         self.voidage_mf = Var(
             domain=Reals,
-            initialize=0.45,
+            initialize=0.382,
             doc="Voidage at minimum fluidization [-]",
             units=pyunits.dimensionless,
         )
@@ -274,7 +274,7 @@ class PhysicalParameterData(PhysicalParameterBlock):
         # Voidage of the bed
         self.voidage = Var(
             domain=Reals,
-            initialize=0.35,
+            initialize=0.45,
             doc="Voidage [-]",
             units=pyunits.dimensionless,
         )

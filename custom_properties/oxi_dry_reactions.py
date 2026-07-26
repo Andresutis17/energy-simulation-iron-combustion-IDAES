@@ -677,9 +677,7 @@ class ReactionBlockData(ReactionBlockDataBase):
                 raise
 
     
-    # reaction_rate [mol/m3/s]
-    # rate = (dX/dt * n_Fe_vol) / |nu_Fe|
-    # n_Fe_vol = (1-porosity)*rho_skel*w_Fe/mw [mol/m3]
+
     
     def _reaction_rate(self):
         self.reaction_rate = Var(
@@ -703,6 +701,7 @@ class ReactionBlockData(ReactionBlockDataBase):
             #  The stoichiometry is 2 Fe + 1.5 O2 -> Fe2O3, so 1 mol of
             # reaction consumes 2 mol of Fe. So, the reaction rate is
             #  r_rxn = r_Fe / 2 = (n_Fe_total / 2) * dX/dt
+            
             ssr = b.solid_state_ref
             n_Fe_total = (
                 (1 - ssr.particle_porosity)

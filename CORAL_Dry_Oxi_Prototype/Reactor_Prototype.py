@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import time
 
-from pyomo.environ import ConcreteModel, value
+from pyomo.environ import ConcreteModel, value, Var
 from idaes.core import FlowsheetBlock
 from idaes.core.util import scaling as iscale
 from idaes.core.solvers import get_solver
@@ -35,6 +35,7 @@ Rg = 8.314 #[J/(mol*K)]
 def main():
     
     # Operating variables
+    APPLY_YBOUNDS = False  # Bounds for the compositions
     n_orifice = 2500
     bed_dia = 6.5 # [m]
     bed_height = 5 # [m]
@@ -143,6 +144,13 @@ def main():
     # Step 1: Build and solve at y_O2=0.21
     set_o2_inlet(0.21)
     iscale.calculate_scaling_factors(m)
+
+    # Applying the bounds for the compositions and porosity of the particle
+    if APPLY_YBOUNDS:
+        for v in m.fs.BFB.component_data_objects(Var, descend_into=True):
+            if "frac_comp" in v.name or "porosity" in v.name:
+                v.setlb(0)
+
     try:
         m.fs.BFB.initialize(
             outlvl=idaeslog.CRITICAL,
@@ -332,6 +340,7 @@ def main():
         if por < -tol:
             print(f"  z={z:.2f}  h={h:.2f} m   porosity = {por:.6f}")
             n_bad = n_bad + 1
+
 
     return m
 

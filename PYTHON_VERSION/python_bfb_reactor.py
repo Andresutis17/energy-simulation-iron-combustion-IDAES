@@ -185,7 +185,7 @@ def stream_table(res):
     Print an IDAES style stream table
 
     """
-    from reaction_packages._common import MW_GAS
+    from reaction_packages.common_properties import MW_GAS
     pkg = res["rc"]["pkg"]; rc = res["rc"]
     n_gas = res["fmol_in"]; fmol_out = res["fmol_out"]; cons = res["cons_total"]
     reactive = pkg.GAS_REACTIVE; products = pkg.GAS_PRODUCTS; inerts = pkg.GAS_INERTS

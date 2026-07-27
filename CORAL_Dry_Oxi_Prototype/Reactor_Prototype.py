@@ -37,6 +37,8 @@ def main():
     # Operating variables
     APPLY_YBOUNDS = False  # Bounds for the compositions
     SOLVER_NAME = "ipopt"  # ipopt or ipopt_l1
+    APPLY_DB_MAX_CAP = False  # cap the bubble size option
+    DB_MAX_CAP = 0.1          # [m] max bubble diameter for APPLY_DB_MAX_CAP 
     n_orifice = 2500
     bed_dia = 6.5 # [m]
     bed_height = 5 # [m]
@@ -162,6 +164,11 @@ def main():
     except Exception as e:
         print(f"Warning: {type(e).__name__}")
 
+    # Cap the maximum bubble diameter 
+    if APPLY_DB_MAX_CAP:
+        m.fs.BFB.bubble_diameter_maximum.deactivate()
+        for x in m.fs.BFB.length_domain:
+            m.fs.BFB.bubble_diameter_max[0, x].fix(DB_MAX_CAP)
 
     # Solve the reactor and read the status
     res = solver.solve(m.fs.BFB, tee=False)

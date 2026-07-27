@@ -56,6 +56,10 @@ from idaes.models_extra.gas_solid_contactors.properties.oxygen_iron_OC_oxidation
 # -----------------------------------------------------------------------------
 def main():
 
+    # --- option toggles (added for the thesis experiments) ---
+    APPLY_DB_MAX_CAP = False  # cap the bubble size option
+    DB_MAX_CAP = 0.1          # [m] max bubble diameter for APPLY_DB_MAX_CAP 
+
     # ---------------------------------------------------------------------
     # Build model
 
@@ -167,6 +171,12 @@ def main():
 
     # Create a solver
     solver = get_solver()
+
+    # Cap the maximum bubble diameter 
+    if APPLY_DB_MAX_CAP:
+        m.fs.BFB.bubble_diameter_maximum.deactivate()
+        for x in m.fs.BFB.length_domain:
+            m.fs.BFB.bubble_diameter_max[0, x].fix(DB_MAX_CAP)
 
     solver.solve(m.fs.BFB, tee=True)
 

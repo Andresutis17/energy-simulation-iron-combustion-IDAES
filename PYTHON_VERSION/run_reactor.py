@@ -3,7 +3,7 @@ Driver for the BFB python reactor
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))   
-import PYTHON_VERSION.python_bfb_reactor as reactorpy                                          
+import python_bfb_reactor as reactorpy
 from reaction_packages import oc_oxidation, wet_oxidation, dry_oxidation, reduction   
 
 # Inputs

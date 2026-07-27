@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import time
 
-from pyomo.environ import ConcreteModel, value, Var
+from pyomo.environ import ConcreteModel, value, Var, SolverFactory
 from idaes.core import FlowsheetBlock
 from idaes.core.util import scaling as iscale
 from idaes.core.solvers import get_solver
@@ -36,6 +36,7 @@ def main():
     
     # Operating variables
     APPLY_YBOUNDS = False  # Bounds for the compositions
+    SOLVER_NAME = "ipopt"  # ipopt or ipopt_l1
     n_orifice = 2500
     bed_dia = 6.5 # [m]
     bed_height = 5 # [m]
@@ -139,7 +140,7 @@ def main():
             },
         }
 
-    solver = get_solver()
+    solver = SolverFactory(SOLVER_NAME)
 
     # Step 1: Build and solve at y_O2=0.21
     set_o2_inlet(0.21)

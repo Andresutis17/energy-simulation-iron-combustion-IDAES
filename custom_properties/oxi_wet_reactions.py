@@ -391,7 +391,8 @@ class OxiWetReactionBlockData(ReactionBlockDataBase):
 
             # Smoothed H2O concentration to avoid negative values
             eps = b.params.eps
-            C_H2O_s = sqrt(C_H2O**2 + eps**2)
+            C_H2O_s = (C_H2O + sqrt(C_H2O**2 + eps**2)) / 2
+
 
             # Fractional H2O order exp((ng-1)*log(C_H2O_s/C_ref)) on a dimensionless ratio
             # So k*C_solid*C_H2O**ng with C_ref=1 mol/m3 

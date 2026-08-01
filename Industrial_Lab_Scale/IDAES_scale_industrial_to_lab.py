@@ -28,7 +28,8 @@ from idaes.models_extra.gas_solid_contactors.properties.oxygen_iron_OC_oxidation
 
 # Inputs
 D_IND = 6.5          # m industrial bed diameter
-H = 1.0              # m  bed height 
+H_IND = 5.0          # m industrial bed height
+H_LAB = 1.0          # m lab bed height TU Darmstadt 
 GAS_FLOW_IND = 215.45    # mol/s gas flow
 SOLID_FLOW_IND = 3.2137  # kg/s solid flow
 T_GAS = 400.0        # K gas inlet temperature 
@@ -44,7 +45,7 @@ D_LAB = 0.054      # m TU Darmstadt bed diameter
 AREA_RATIO = (D_IND / D_LAB) ** 2   
 
 
-def run(label, D, gas_flow, solid_flow):
+def run(label, D, H, gas_flow, solid_flow):
 
     """
     Build, initialize, solve and report the OC BFB at one scale
@@ -126,8 +127,8 @@ if __name__ == "__main__":
     solid_lab = SOLID_FLOW_IND / AREA_RATIO
 
     # Run both scales
-    ind = run("INDUSTRIAL", D_IND, GAS_FLOW_IND, SOLID_FLOW_IND)
-    lab = run("LAB scale",      D_LAB, gas_lab,  solid_lab)
+    ind = run("INDUSTRIAL", D_IND, H_IND, GAS_FLOW_IND, SOLID_FLOW_IND)
+    lab = run("LAB scale",  D_LAB, H_LAB, gas_lab,   solid_lab)
 
     # Compare
     print("\n")

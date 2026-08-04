@@ -53,6 +53,9 @@ def main():
 
     # Fix variables
     m.fs.solid_properties.particle_dia.fix(particle_dia)
+    m.fs.solid_properties.velocity_mf.fix(0.039624)
+    m.fs.solid_properties.voidage_mf.fix(0.45)
+    m.fs.solid_properties.voidage.fix(0.50)
     m.fs.BFB.number_orifice.fix(n_orifice)
     m.fs.BFB.bed_diameter.fix(bed_dia)
     m.fs.BFB.bed_height.fix(bed_height)

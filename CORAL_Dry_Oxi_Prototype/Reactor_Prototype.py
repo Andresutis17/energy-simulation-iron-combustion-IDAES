@@ -46,10 +46,10 @@ def main():
     T_gas = 873    # [K] 
     T_solid = 1073  #  [K] 
     P_op = 1e5 # [Pa]
-    y_O2_in = 0.21
+    y_O2_in = 0.30
     y_N2_in = 1.0 - y_O2_in
-    flow_mol_gas = 1967.0 # [mol/s]
-    flow_mass_solid = 500.0 # [kg/s]
+    flow_mol_gas = 500 # [mol/s]
+    flow_mass_solid = 50 # [kg/s]
     porosity = 0.45
     w_Fe2O3_in = 0.05
     w_Fe3O4_in = 0.0
@@ -88,7 +88,8 @@ def main():
     # Fix variables
     m.fs.solid_properties.particle_dia.fix(particle_dia)
     # umf = 0.0396 m/s to find convergence
-    m.fs.solid_properties.velocity_mf.fix(0.0396)
+    m.fs.solid_properties.velocity_mf.fix(0.00356)
+    m.fs.oxi_dry_reactions.grain_radius.fix(50e-6)
     m.fs.BFB.number_orifice.fix(n_orifice)
     m.fs.BFB.bed_diameter.fix(bed_dia)
     m.fs.BFB.bed_height.fix(bed_height)
@@ -142,10 +143,11 @@ def main():
             },
         }
 
-    solver = SolverFactory(SOLVER_NAME)
+    solver = get_solver()  
 
     # Step 1: Build and solve at y_O2=0.21
-    set_o2_inlet(0.21)
+    set_o2_inlet(y_O2_in)
+    m.fs.oxi_dry_reactions.clamp_lambda = 0.0
     iscale.calculate_scaling_factors(m)
 
     # Applying the bounds for the compositions and porosity of the particle
@@ -207,6 +209,20 @@ def main():
                 break
     else:
         pass
+
+    # Step 3: Ramp the O2 non negativity clamp .
+    # lambda=0 = sqrt-ABS: Converges but the emulsion C_O2 goes negative.
+    # lambda=1 = smooth-max(0, C_O2): floors the rate at C_O2=0, the physical
+    # branch. Reaches the SAME global conversion  with C_O2 >= 0
+    print("\n Step 3: O2 non negativity clamp (lambda 0 to 1)")
+    for lam in [0.2, 0.4, 0.6, 0.8, 1.0]:
+        m.fs.oxi_dry_reactions.clamp_lambda = lam
+        res = solver.solve(m.fs.BFB, tee=False)
+        terminal_condition = str(res.solver.termination_condition)
+        print(f"  lambda={lam:.1f}: {terminal_condition}")
+        if terminal_condition != "optimal":
+            print(f"  Stalled at={lam:.1f}.")
+            break
 
 
 

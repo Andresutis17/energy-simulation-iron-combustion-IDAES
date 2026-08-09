@@ -124,6 +124,13 @@ class ReactionParameterData(ReactionParameterBlock):
             doc="Dimensionless smoothing factor for conversion [-]",
             units=pyunits.dimensionless,
         )
+
+        self.clamp_lambda = Param(
+            mutable=True, default=1.0,
+            doc="Homotopy O2 non-negativity clamp"
+                "Solve at lambda=0 then ramp to 1.",
+            units=pyunits.dimensionless,
+        )
         self._scale_factor_rxn = Param(
             mutable=True, default=1,
             doc="Scale factor for reaction eqn",
@@ -135,6 +142,13 @@ class ReactionParameterData(ReactionParameterBlock):
             units=pyunits.m,
         )
 
+        self.grain_radius = Var(
+            domain=Reals,
+            initialize=50e-6,
+            doc="Grain radius [m]",
+            units=pyunits.m,
+        )
+        self.grain_radius.fix()
         
 
         # Step I: Chemical reaction control 
@@ -503,7 +517,7 @@ class ReactionBlockData(ReactionBlockDataBase):
                 Constants.gas_constant,
                 to_units=pyunits.J / pyunits.mol / pyunits.K,
             )
-            rp = b.solid_state_ref.params.particle_dia / 2
+            rp = b.params.grain_radius
             return b.k_chr == (
                 b.params.k_chr_0
                 * (b.params.rp_ref / rp) ** b.params.n_k_rp
@@ -534,7 +548,7 @@ class ReactionBlockData(ReactionBlockDataBase):
                 to_units=pyunits.J / pyunits.mol / pyunits.K,
             )
             T = b.solid_state_ref.temperature
-            rp = b.solid_state_ref.params.particle_dia / 2
+            rp = b.params.grain_radius
             D_g = b.params.D_g_0 * exp(-b.params.E_g / (Rg * T))
             D_s = b.params.D_s_0 * exp(-b.params.E_s / (Rg * T))
             return b.D_eff == (
@@ -562,7 +576,7 @@ class ReactionBlockData(ReactionBlockDataBase):
 
         def X_chr_eqn(b):
             T = b.solid_state_ref.temperature
-            rp = b.solid_state_ref.params.particle_dia / 2
+            rp = b.params.grain_radius
             Xchr_O2 = b.params.Xchr_O2_a * exp(b.params.Xchr_O2_b / T)
             a_O2 = (
                 b.params.a_O2_0
@@ -608,13 +622,17 @@ class ReactionBlockData(ReactionBlockDataBase):
         )
 
         def C_O2_smooth_eqn(b):
-            return b.C_O2_smooth == (
-                (b.gas_state_ref.dens_mol_comp["O2"] ** 2
-                 + b.params.eps ** 2) ** 0.5
-            )
+            """
+            Lambda-homotopy between sqrt-ABS (lambda=0) and smooth-max (lambda=1)
+            """
+            C = b.gas_state_ref.dens_mol_comp["O2"]
+            lam = b.params.clamp_lambda
+            abs_c = (C ** 2 + b.params.eps ** 2) ** 0.5
+            max_c = 0.5 * (C + abs_c)
+            return b.C_O2_smooth == (1 - lam) * abs_c + lam * max_c
+
         
         # dX/dt = (3/tau_chr) * (1-X)^(2/3)
-
         def dXdt_I_eqn(b):
             tau_chr = 1.0 / (b.k_chr * b.C_O2_smooth ** b.params.n_chr)
             eps_x = b.params.eps_x

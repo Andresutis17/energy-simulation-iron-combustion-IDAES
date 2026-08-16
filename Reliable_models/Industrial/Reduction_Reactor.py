@@ -2,8 +2,12 @@
 Reduction Kuhn BFB reactor at INDUSTRIAL scale (Independent temperatures inputs)
 """
 import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "packages", "reduction"))
+here_path = os.path.dirname(os.path.abspath(__file__))
+while here_path != os.path.dirname(here_path):
+    if os.path.isdir(os.path.join(here_path, "custom_properties")):
+        sys.path.insert(0, here_path)
+        break
+    here_path = os.path.dirname(here_path)
 
 from pyomo.environ import ConcreteModel, value, Var
 from idaes.core import FlowsheetBlock

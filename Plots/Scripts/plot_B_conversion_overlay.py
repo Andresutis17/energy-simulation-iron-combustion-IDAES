@@ -14,9 +14,9 @@ import common
 
 # The reactors used for these plots
 REACTORS = [
-    ("reduction", r"(a) H$_2$ reduction", r"$X_{Fe_2O_3}$"),
-    ("wet", r"(b) steam oxidation", r"$X_{Fe}$"),
-    ("dry", r"(c) air oxidation", r"$X_{Fe}$"),
+    ("reduction", r"(a) Reduction", r"$X_{Fe_2O_3}$"),
+    ("wet", r"(b) Wet Oxidation", r"$X_{Fe}$"),
+    ("dry", r"(c) Dry Oxidation", r"$X_{Fe}$"),
 ]
 
 

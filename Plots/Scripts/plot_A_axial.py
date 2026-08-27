@@ -58,7 +58,7 @@ def main():
     common.apply_style()
     for cfg in FIGS:
         rows, meta = common.load_axial(cfg["reactor"], "lab")
-        height = common.cols(rows, "z")
+        height_norm = common.cols(rows, "x_norm")
         subtitle = f"{cfg['title']} (Lab, H={meta['H']:.2f} m)"
 
         # a) What the solid is becoming along the bed
@@ -66,9 +66,9 @@ def main():
                  if max(common.cols(rows, col), key=abs) >= W_MIN]
         fig, ax = new_fig()
         for i, (col, lab) in enumerate(shown):
-            ax.plot(height, common.cols(rows, col), color=common.COLORS[i],
+            ax.plot(height_norm, common.cols(rows, col), color=common.COLORS[i],
                     ls=common.LSTYLES[i], label=lab)
-        ax.set_xlabel("Z [m]")
+        ax.set_xlabel("z/H [-]")
         ax.set_ylabel("Solid mass fraction [-]")
         ax.set_title(f"Solid-phase chain: {subtitle}")
         legend_below(ax, ncol=len(shown), nentries=len(shown))
@@ -81,13 +81,13 @@ def main():
         # b) Gases mol fractions along the bed
         fig, ax = new_fig()
         for i, (specie, lab) in enumerate(cfg["gases"]):
-            ax.plot(height, common.cols(rows, f"y_emul_{specie}"),
+            ax.plot(height_norm, common.cols(rows, f"y_emul_{specie}"),
                     color=common.COLORS[i], ls=common.LSTYLES[LS_EMUL],
                     label=f"{lab} emul.")
-            ax.plot(height, common.cols(rows, f"y_bub_{specie}"),
+            ax.plot(height_norm, common.cols(rows, f"y_bub_{specie}"),
                     color=common.COLORS[i], ls=common.LSTYLES[LS_BUB],
                     label=f"{lab} bub.")
-        ax.set_xlabel("Z [m]")
+        ax.set_xlabel("z/H [-]")
         ax.set_ylabel("Gas mol fraction [-]")
         ax.set_title(f"Emulsion vs Bubble: {subtitle}")
         legend_below(ax, ncol=2, nentries=2 * len(cfg["gases"]))
@@ -102,9 +102,9 @@ def main():
         temps = [("T_gas", r"$T_{ge}$"), ("T_bub", r"$T_{gb}$"),
                  ("T_sol", r"$T_{se}$")]
         for i, (col, lab) in enumerate(temps):
-            ax.plot(height, common.cols(rows, col), color=common.COLORS[i],
+            ax.plot(height_norm, common.cols(rows, col), color=common.COLORS[i],
                     ls=common.LSTYLES[i], label=lab)
-        ax.set_xlabel("Z [m]")
+        ax.set_xlabel("z/H [-]")
         ax.set_ylabel("Temperature [K]")
         ax.set_title(f"Phase temperatures: {subtitle}")
         legend_below(ax, ncol=3, nentries=len(temps))

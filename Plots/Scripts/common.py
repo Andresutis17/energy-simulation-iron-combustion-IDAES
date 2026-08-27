@@ -11,8 +11,8 @@ import os
 # Paths
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
-DATA = os.path.join(HERE, "data")
-FIGS = os.path.join(HERE, "figs")
+DATA = os.path.join(os.path.dirname(HERE), "data")
+FIGS = os.path.join(os.path.dirname(HERE), "Figs")
 MODELS = os.path.join(REPO, "Reliable_models")
 
 # Path to the lab models
@@ -103,7 +103,7 @@ def load_csv(name):
 
 
 # Colors used in the plots
-COLORS = ["#006df2", "#FF0D00", "#229801", "#C4B80D"]
+COLORS = ["#006df2", "#FF0D00", "#229801", "#9801CF"]
 LSTYLES = ["-", "--", "-.", ":"]
 INK = "#0b0b0b"
 INK2 = "#5c5c5b"

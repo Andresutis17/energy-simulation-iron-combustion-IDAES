@@ -1,0 +1,16 @@
+{
+  "reactor": "wet",
+  "scale": "ind",
+  "term": "optimal",
+  "err_mass": null,
+  "gas_feasible": null,
+  "X_solid": 39.935378225790394,
+  "X_gas": 26.82445969365965,
+  "n_bad": 0,
+  "T_gas_out": 1162.061225995249,
+  "T_solid_out": 1162.1148540355537,
+  "D": 6.5,
+  "H": 5,
+  "valid": true,
+  "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Industrial\\Wet_Oxidation_Reactor.py"
+}

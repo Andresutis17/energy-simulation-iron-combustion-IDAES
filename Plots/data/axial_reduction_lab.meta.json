@@ -1,0 +1,16 @@
+{
+  "reactor": "reduction",
+  "scale": "lab",
+  "term": "optimal",
+  "err_mass": 0.01092843281937687,
+  "gas_feasible": true,
+  "X_solid": 99.06189827675497,
+  "X_gas": 29.624816263758643,
+  "n_bad": 0,
+  "T_gas_out": 1034.8418291871549,
+  "T_solid_out": 1034.7547840385296,
+  "D": 0.054,
+  "H": 1.0,
+  "valid": true,
+  "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Lab\\Reduction_Reactor_Lab.py"
+}

@@ -1,0 +1,16 @@
+{
+  "reactor": "dry",
+  "scale": "lab",
+  "term": "optimal",
+  "err_mass": 0.0005306867693521857,
+  "gas_feasible": true,
+  "X_solid": 20.971087971373663,
+  "X_gas": 13.970353723642631,
+  "n_bad": 0,
+  "T_gas_out": 1081.6976988150195,
+  "T_solid_out": 1091.1139069785158,
+  "D": 0.054,
+  "H": 0.9000000000000004,
+  "valid": true,
+  "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Lab\\Dry_Oxidation_Reactor_Lab.py"
+}

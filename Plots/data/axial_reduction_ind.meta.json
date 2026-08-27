@@ -1,0 +1,16 @@
+{
+  "reactor": "reduction",
+  "scale": "ind",
+  "term": "optimal",
+  "err_mass": null,
+  "gas_feasible": null,
+  "X_solid": 99.55311373670484,
+  "X_gas": 30.025883386404512,
+  "n_bad": 0,
+  "T_gas_out": 1028.647059220472,
+  "T_solid_out": 1028.5615122198546,
+  "D": 6.5,
+  "H": 5,
+  "valid": true,
+  "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Industrial\\Reduction_Reactor.py"
+}

@@ -14,8 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common  
 from gather_sensitivity import FIELDS, FAMILIES, csv_path, write_csv  
 
-# The points that need a retry (fresh run 30-08: only these failed where the
-# old repo's final record has them solved; the wet fold deaths are physics)
+# The points that need a retry 
 RETRIES = [
     ("reduction", "T_solid", 1073.0),
     ("reduction", "T_solid", 923.0),

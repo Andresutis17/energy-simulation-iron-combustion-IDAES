@@ -18,9 +18,12 @@ LOGDIR = os.path.join(common.DATA, "logs")
 
 # The known good and real answers, if the solver misses them, then abort the solve
 EXPECTED = {
-    "reduction": {"X_solid": 99.06, "X_gas": 29.63, "T_solid_out": 1034.8},
-    "wet": {"X_solid": 40.89, "X_gas": 26.77, "T_solid_out": 1160.1},
-    "dry": {"X_solid": 20.97, "X_gas": 13.97, "T_solid_out": 1091.1},
+    "reduction": {"X_solid": 99.06, "X_gas": 29.63, "T_solid_out": 1034.8,
+                  "X_prod": 36.05},
+    "wet": {"X_solid": 40.89, "X_gas": 26.77, "T_solid_out": 1160.1,
+            "X_prod": 10.55},
+    "dry": {"X_solid": 20.97, "X_gas": 13.97, "T_solid_out": 1091.1,
+            "X_prod": 20.97},
 }
 
 # A little tolerance for the solvers, conversion and temperature
@@ -54,7 +57,12 @@ FAMILIES = {
 
         "grid": [0.27, 0.15, 0.20, 0.35, 0.40],
     },
-    
+    "reduction_T_gas": {
+        "reactor": "reduction", "knob": "T_gas", "route": "cold",
+
+        "grid": [1223, 1173.9, 1123, 1073, 1050, 1023, 973, 923],
+    },
+
     "dry_porosity": {
         "reactor": "dry", "knob": "porosity", "route": "ladder",
         
@@ -101,12 +109,56 @@ FAMILIES = {
 
         "grid": [2.0, 1.5, 1.0, 0.75, 0.5],
     },
+
+    "wet_T_gas": {
+        "reactor": "wet", "knob": "T_gas", "route": "cold",
+
+        "grid": [1223, 1173.9, 1123, 1073, 1050, 1023, 973, 923],
+    },
+    "wet_y_H2O": {
+        "reactor": "wet", "knob": "y_H2O", "route": "cold",
+
+        "grid": [0.99, 0.75, 0.50, 0.30, 0.25, 0.20, 0.10, 0.05],
+    },
+    "reduction_H": {
+        "reactor": "reduction", "knob": "H", "route": "cold",
+
+        "grid": [1.0, 0.95, 0.90, 0.85, 0.80, 0.70, 0.60, 0.50],
+    },
+    "wet_H": {
+        "reactor": "wet", "knob": "H", "route": "cold",
+
+        "grid": [0.5, 0.55, 0.6, 0.65, 0.70, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0],
+    },
+    "dry_H": {
+        "reactor": "dry", "knob": "H", "route": "ladder",
+
+        "grid": [0.90, 0.88, 0.86, 0.84, 0.82, 0.80, 0.90,
+                 0.92, 0.94, 0.96, 0.98, 1.00],
+        "timeout": 7200,
+    },
+    "dry_T_gas": {
+        "reactor": "dry", "knob": "T_gas", "route": "ladder",
+
+        "grid": [600, 750, 850, 923, 973, 1023, 1073, 1123, 1173.9, 1223, 600],
+        "timeout": 7200,
+    },
 }
 
-# The CSV columns
+# Finished sweeps, their CSVs hold one time rescue rows,
+# so write_csv refuses to rewrite them
+FROZEN_FAMILIES = {
+    "dry_porosity", "dry_y_O2", "dry_T_solid", "dry_gas_flow", "dry_solid_flow",
+    "wet_T_solid", "wet_porosity", "wet_gas_flow", "wet_solid_flow",
+    "reduction_T_gas",
+}
+
+# Columns of every sweep CSV, new ones go at the end
 FIELDS = ["reactor", "knob", "value", "abs_flow", "path", "X_solid", "X_gas",
           "T_gas_out", "T_solid_out", "Ts_in", "n_bad", "err_mass",
-          "gas_feasible", "banner_ok", "valid", "term"]
+          "gas_feasible", "banner_ok", "valid", "term",
+          "X_prod", "w_out_Fe2O3", "w_out_Fe3O4", "w_out_FeO", "w_out_Fe",
+          "Tg_in", "H"]
 
 # Max seconds per run
 TIMEOUT_COLD = {"reduction": 1800, "wet": 2400}
@@ -125,9 +177,11 @@ def csv_path(fam):
 def write_csv(fam, rows):
     """
     Write one family's rows to its CSV, sorted by knob value.
-    Rewrites the whole file each time 
+    Rewrites the whole file each time. Frozen families are refused.
     """
 
+    if fam in FROZEN_FAMILIES:
+        sys.exit(f"{fam} is frozen, its CSV stays as it is")
     rows = sorted(rows, key=lambda r: float(r["value"]))
     with open(csv_path(fam), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
@@ -215,6 +269,11 @@ def preflight():
                   f"  T={point['T_solid_out']:.1f} (exp"
                   f" {expected['T_solid_out']:.1f}, d{dt:.2f})  "
                   f"{'OK' if good else 'Fail'}", flush=True)
+            if point.get("X_prod") is not None:
+                dpx = abs(point["X_prod"] - expected["X_prod"])
+                print(f"  [{reactor}] X_prod={point['X_prod']:.2f} "
+                      f"(exp {expected['X_prod']:.2f}, d{dpx:.2f}) - soft",
+                      flush=True)
             ok = ok and good
     if not ok:
         sys.exit("Health check failed")
@@ -272,10 +331,10 @@ def run_ladder_family(fam):
     with open(log, "w") as lf:
         try:
             subprocess.run(cmd, stdout=lf, stderr=subprocess.STDOUT,
-                           timeout=TIMEOUT_LADDER, cwd=common.HERE,
-                           check=False)
+                           timeout=spec.get("timeout", TIMEOUT_LADDER),
+                           cwd=common.HERE, check=False)
         except subprocess.TimeoutExpired:
-            pass  
+            pass
     rows, drifts = parse_points_from_log(
         log, spec["grid"], {"reactor": spec["reactor"], "knob": spec["knob"]})
     for dx, dt in drifts:
@@ -301,13 +360,32 @@ def main():
     which = sys.argv[1] if len(sys.argv) > 1 else "all"
     common.ensure_dirs()
     os.makedirs(LOGDIR, exist_ok=True)
-    preflight()
+    # Frozen families are refused before anything runs
+    if which in FROZEN_FAMILIES:
+        sys.exit(f"family '{which}' is frozen ")
+    if which == "all":
+        for fam in FAMILIES:
+            if fam in FROZEN_FAMILIES:
+                print(f"  [skip] {fam} is frozen",
+                      flush=True)
+                
+    # Typing this skips the startup health check 
+    if "nopreflight" not in sys.argv:
+        preflight()
     if which == "preflight":
         return
     if which == "all":
-        targets = list(FAMILIES)
+        targets = [f for f in FAMILIES if f not in FROZEN_FAMILIES]
     elif which in ("reduction", "wet", "dry"):
-        targets = [f for f in FAMILIES if FAMILIES[f]["reactor"] == which]
+        targets = []
+        for f in FAMILIES:
+            if FAMILIES[f]["reactor"] != which:
+                continue
+            if f in FROZEN_FAMILIES:
+                print(f"  [skip] {f} is frozen",
+                      flush=True)
+                continue
+            targets.append(f)
     elif which in FAMILIES:
         targets = [which]
     else:

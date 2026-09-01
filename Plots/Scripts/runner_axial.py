@@ -113,6 +113,15 @@ def extract_rows(m, reactor):
             row[f"y_bub_{specie}"] = gas_b.mole_frac_comp[specie].value
         for specie in SOLID_SP:
             row[f"w_{specie}"] = solid_props.mass_frac_comp[specie].value
+        # Product basis conversion + data for the residence time plots
+        #  u_solid is a  scalar along the bed
+        row["X_prod"] = common.x_prod_from_w(
+            reactor, {k: row[f"w_{k}"] for k in common.FE_SP})
+        row["flow_mass"] = solid_props.flow_mass.value
+        row["dens_mass_particle"] = solid_props.dens_mass_particle.value
+        row["particle_porosity"] = solid_props.particle_porosity.value
+        row["delta_e"] = b.delta_e[0, x_norm].value
+        row["u_solid"] = b.velocity_superficial_solid[0].value
         rows.append(row)
     return rows, H
 
@@ -149,19 +158,26 @@ def endpoint(m, reactor):
             w_frac = b.solid_emulsion.properties[0, x_norm].mass_frac_comp[specie].value
             if w_frac < -tol:
                 n_bad += 1
-    return {
+    # Product basis conversion and outlet composition
+    w_out = {k: b.solid_outlet.mass_frac_comp[0, k].value for k in common.FE_SP}
+    out = {
         "X_solid": x_solid, "X_gas": x_gas, "n_bad": n_bad,
         "T_gas_out": b.gas_outlet.temperature[0].value,
         "T_solid_out": b.solid_outlet.temperature[0].value,
         "D": b.bed_diameter.value, "H": b.bed_height.value,
+        "X_prod": common.x_prod_from_w(reactor, w_out),
+        "solid_mass_in": flow_in, "solid_mass_out": flow_out,
     }
+    out.update({f"w_out_{k}": w_out[k] for k in common.FE_SP})
+    return out
 
 
-def solve_lab(reactor, h_override, norif_override, verbose, ncont=None):
+def solve_lab(reactor, h_override, norif_override, verbose, ncont=None,
+              tgas_override=None):
 
     """
     Solves one lab case, it starts from the model's own lab inputs and
-    overrides only H, n_orifice and, n_cont 
+    overrides only H, n_orifice, gas_T and n_cont
     """
 
     module = load_module(common.LAB_SCRIPTS[reactor], f"{reactor}")
@@ -170,6 +186,8 @@ def solve_lab(reactor, h_override, norif_override, verbose, ncont=None):
         target["H"] = h_override
     if norif_override is not None:
         target["n_orifice"] = norif_override
+    if tgas_override is not None:
+        target["gas_T"] = tgas_override
     if ncont is not None:
         m, r = module.solve_case(target, n_cont=ncont, verbose=verbose)
     else:
@@ -177,7 +195,7 @@ def solve_lab(reactor, h_override, norif_override, verbose, ncont=None):
     term = r.get("termination", "?")
     err_mass = r.get("err_mass", None)
     gas_feasible = r.get("gas_feasible", None)
-    return m, term, err_mass, gas_feasible
+    return m, term, err_mass, gas_feasible, target
 
 
 def solve_ind(reactor):
@@ -200,19 +218,23 @@ def main():
     ap.add_argument("--norif", type=float, default=None)
     ap.add_argument("--mode", default="axial", choices=["axial", "point"])
     ap.add_argument("--ncont", type=int, default=None)
+    ap.add_argument("--tgas", type=float, default=None)          
+    ap.add_argument("--suffix", default=None)
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
 
+    if args.tgas is not None and args.scale != "lab":
+        sys.exit("Problem with tgas")
 
     if args.scale == "lab":
         bed_h = args.H if args.H is not None else common.LAB_MATCH[args.reactor]["H"]
         orifice_dens = (args.norif if args.norif is not None
                else common.LAB_MATCH[args.reactor]["n_orifice"])
-        model, term, err_mass, gas_feasible = solve_lab(args.reactor, bed_h, orifice_dens,
-                                                    args.verbose,
-                                                    ncont=args.ncont)
+        model, term, err_mass, gas_feasible, target = solve_lab(
+            args.reactor, bed_h, orifice_dens, args.verbose,
+            ncont=args.ncont, tgas_override=args.tgas)
     else:
-        bed_h, orifice_dens = None, None
+        bed_h, orifice_dens, target = None, None, {}
         model, term, err_mass, gas_feasible = solve_ind(args.reactor)
 
     ep = endpoint(model, args.reactor)
@@ -226,7 +248,7 @@ def main():
     if args.mode == "axial":
         rows, H = extract_rows(model, args.reactor)
         common.ensure_dirs()
-        with open(common.axial_csv(args.reactor, args.scale), "w",
+        with open(common.axial_csv(args.reactor, args.scale, args.suffix), "w",
                   newline="") as f:
             w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
             w.writeheader()
@@ -234,7 +256,10 @@ def main():
         meta = dict(point)
         meta["source"] = (common.LAB_SCRIPTS if args.scale == "lab"
                           else common.IND_SCRIPTS)[args.reactor]
-        with open(common.axial_meta(args.reactor, args.scale), "w") as f:
+        if args.scale == "lab":
+            meta["gas_T"] = target["gas_T"]
+            meta["solid_T"] = target["solid_T"]
+        with open(common.axial_meta(args.reactor, args.scale, args.suffix), "w") as f:
             json.dump(meta, f, indent=2)
 
     print("POINT " + json.dumps(point), flush=True)

@@ -13,7 +13,7 @@ from runner_axial import endpoint, load_module
 
 
 # Knobs: model inputs used in sweeps
-KNOBS = ["T_solid", "y_O2", "porosity", "gas_flow", "solid_flow"]
+KNOBS = ["T_solid", "T_gas", "y_O2", "porosity", "gas_flow", "solid_flow", "H"]
 
 
 def apply_knob(m, mod, base, knob, value):
@@ -27,6 +27,10 @@ def apply_knob(m, mod, base, knob, value):
         mod.set_case(m, base["D"], base["H"], base["n_orifice"],
                      base["gas_flow_mol"], base["solid_flow_mass"],
                      base["gas_T"], value)
+    elif knob == "T_gas":
+        mod.set_case(m, base["D"], base["H"], base["n_orifice"],
+                     base["gas_flow_mol"], base["solid_flow_mass"],
+                     value, base["solid_T"])
     elif knob == "gas_flow":
         mod.set_case(m, base["D"], base["H"], base["n_orifice"],
                      base["gas_flow_mol"] * value, base["solid_flow_mass"],
@@ -35,9 +39,11 @@ def apply_knob(m, mod, base, knob, value):
         mod.set_case(m, base["D"], base["H"], base["n_orifice"],
                      base["gas_flow_mol"], base["solid_flow_mass"] * value,
                      base["gas_T"], base["solid_T"])
+    elif knob == "H":
+        mod.set_case(m, base["D"], value, base["n_orifice"],
+                     base["gas_flow_mol"], base["solid_flow_mass"],
+                     base["gas_T"], base["solid_T"])
     elif knob == "y_O2":
-
-        # Dilute the feed, O2 takes the new value, N2 takes the rest
         b.gas_inlet.mole_frac_comp[0, "O2"].fix(value)
         b.gas_inlet.mole_frac_comp[0, "N2"].fix(1.0 - value)
     elif knob == "porosity":
@@ -53,6 +59,8 @@ def target_with_knob(base, knob, value):
     tgt = dict(base)
     if knob == "T_solid":
         tgt["solid_T"] = value
+    elif knob == "T_gas":
+        tgt["gas_T"] = value
     elif knob == "y_O2":
         tgt["y_O2"] = value
         tgt["y_N2"] = 1.0 - value
@@ -62,6 +70,8 @@ def target_with_knob(base, knob, value):
         tgt["gas_flow_mol"] = base["gas_flow_mol"] * value
     elif knob == "solid_flow":
         tgt["solid_flow_mass"] = base["solid_flow_mass"] * value
+    elif knob == "H":
+        tgt["H"] = value
     return tgt
 
 
@@ -87,7 +97,8 @@ def report_step(mod, m, results, tgt, knob, v, path, drift=None):
     point = {
         "reactor": "dry", "knob": knob, "value": v,
         "abs_flow": abs_flow_of(tgt, knob), "path": path,
-        "Ts_in": tgt["solid_T"], "term": results.get("termination", "?"),
+        "Ts_in": tgt["solid_T"], "Tg_in": tgt["gas_T"],
+        "term": results.get("termination", "?"),
         "err_mass": err_mass, "gas_feasible": results.get("gas_feasible"),
         "banner_ok": validity == "", **report,
     }
@@ -112,9 +123,11 @@ def main():
     base = dict(mod.LAB)
     base["H"] = common.LAB_MATCH["dry"]["H"]
     base["n_orifice"] = common.LAB_MATCH["dry"]["n_orifice"]
-    base_value = {"T_solid": base["solid_T"], "y_O2": base["y_O2"],
+    base_value = {"T_solid": base["solid_T"], "T_gas": base["gas_T"],
+                  "y_O2": base["y_O2"],
                   "porosity": base["particle_porosity"],
-                  "gas_flow": 1.0, "solid_flow": 1.0}[args.knob]
+                  "gas_flow": 1.0, "solid_flow": 1.0,
+                  "H": base["H"]}[args.knob]
     if abs(values[0] - base_value) > 1e-9:
         sys.exit(f"first value {values[0]:g} != base {base_value:g}")
 

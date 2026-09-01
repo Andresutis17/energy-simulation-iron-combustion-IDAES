@@ -44,20 +44,20 @@ REPORT_KEYS = {
 }
 
 
-def axial_csv(reactor, scale):
+def axial_csv(reactor, scale, suffix=None):
     """
     Path to the axial profiles CSV file
 
     """
 
-    return os.path.join(DATA, f"axial_{reactor}_{scale}.csv")
+    return os.path.join(DATA, f"axial_{reactor}_{scale}{suffix or ''}.csv")
 
 
-def axial_meta(reactor, scale):
+def axial_meta(reactor, scale, suffix=None):
     """
     Path to the metadata JSON file for axial profiles
     """
-    return os.path.join(DATA, f"axial_{reactor}_{scale}.meta.json")
+    return os.path.join(DATA, f"axial_{reactor}_{scale}{suffix or ''}.meta.json")
 
 
 def ensure_dirs():
@@ -78,17 +78,17 @@ def save_fig(fig, name):
                 bbox_inches="tight")
 
 
-def load_axial(reactor, scale):
+def load_axial(reactor, scale, suffix=None):
     """
     Return rows and meta for one solved case
     """
     import csv
-    with open(axial_csv(reactor, scale), newline="") as f:
+    with open(axial_csv(reactor, scale, suffix), newline="") as f:
         rows = list(csv.DictReader(f))
     for r in rows:
         for k in r:
-            r[k] = float(r[k])
-    with open(axial_meta(reactor, scale)) as f:
+            r[k] = float(r[k]) if r[k] != "" else None
+    with open(axial_meta(reactor, scale, suffix)) as f:
         meta = json.load(f)
     return rows, meta
 
@@ -147,3 +147,45 @@ def cols(rows, key):
     Pulls one column out of the dict as a plain list
     """
     return [r[key] for r in rows]
+
+
+# Solid molar masses in kg/mol and how many Fe atoms each species has
+MW_S = {"Fe2O3": 0.15969, "Fe3O4": 0.231533, "FeO": 0.071844,
+        "Fe": 0.055845, "Al2O3": 0.10196}
+N_FE = {"Fe2O3": 2, "Fe3O4": 3, "FeO": 1, "Fe": 1}
+FE_SP = ["Fe2O3", "Fe3O4", "FeO", "Fe"]
+
+# Skeletal densities in kg/m3
+RHO_SKELETAL = {"Fe2O3": 5250.0, "Fe3O4": 5170.0, "FeO": 5700.0,
+                "Fe": 7874.0, "Al2O3": 3987.0}
+
+
+def x_prod_from_w(reactor, mass_frac):
+
+    """
+    Product basis solid conversion from mass fractions
+    """
+    fe_mol = {sp: mass_frac[sp] / MW_S[sp] * N_FE[sp] for sp in FE_SP}
+    tot = sum(fe_mol.values())
+    if tot <= 1e-12:
+        return None
+    if reactor == "reduction":
+        fe_prod = fe_mol["Fe"]
+    elif reactor == "wet":
+        fe_prod = fe_mol["Fe3O4"]
+    else:
+        fe_prod = fe_mol["Fe2O3"]
+    return 100.0 * fe_prod / tot
+
+
+def x_prod_col(reactor, rows):
+
+    """
+    Conversion of every row, recomputed when the file has the data
+    """
+
+
+    if all(f"w_{sp}" in rows[0] for sp in FE_SP):
+        return [x_prod_from_w(reactor, {sp: row[f"w_{sp}"] for sp in FE_SP})
+                for row in rows]
+    return [row.get("X_prod") for row in rows]

@@ -15,8 +15,10 @@ from runner_axial import endpoint, load_module
 
 # Knobs: model inputs used in sweeps
 KNOBS = {
-    "reduction": ["T_solid", "y_H2", "porosity", "gas_flow", "solid_flow"],
-    "wet": ["T_solid", "porosity", "gas_flow", "solid_flow"],
+    "reduction": ["T_solid", "T_gas", "y_H2", "porosity", "gas_flow",
+                  "solid_flow", "H"],
+    "wet": ["T_solid", "T_gas", "y_H2O", "porosity", "gas_flow",
+            "solid_flow", "H"],
 }
 
 
@@ -24,14 +26,21 @@ def apply_knob(target, mod, knob, value):
     """
     Apply one knob in the lab dict
     """
-    # Kinetics only uses the solid temperature 
+    # Kinetics only uses the solid temperature
     if knob == "T_solid":
         target["solid_T"] = value
+    elif knob == "T_gas":
+        target["gas_T"] = value
     elif knob == "y_H2":
         target["y_H2"] = value
         target["y_N2"] = 1.0 - value
+    elif knob == "y_H2O":
+        target["y_H2O"] = value
+        target["y_N2"] = round(1.0 - value, 10)
     elif knob == "porosity":
         target["particle_porosity"] = value
+    elif knob == "H":
+        target["H"] = value
     elif knob == "gas_flow":
         target["gas_flow_mol"] = mod.LAB["gas_flow_mol"] * value
         return target["gas_flow_mol"]
@@ -67,7 +76,7 @@ def main():
         "reactor": args.reactor, "knob": args.knob, "value": args.value,
         "abs_flow": abs_flow,
         "path": "cold+n_cont40" if args.ncont else "cold",
-        "Ts_in": target["solid_T"],
+        "Ts_in": target["solid_T"], "Tg_in": target["gas_T"],
         "term": results.get("termination", "?"), "err_mass": err_mass,
         "gas_feasible": results.get("gas_feasible"), "banner_ok": validity == "",
         **report,

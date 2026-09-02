@@ -11,6 +11,15 @@
   "T_solid_out": 1091.1139069785158,
   "D": 0.054,
   "H": 0.9000000000000004,
+  "X_prod": 20.97077322117882,
+  "solid_mass_in": 0.0006901775147928993,
+  "solid_mass_out": 0.0007523939436607743,
+  "w_out_Fe2O3": 0.2750425636024795,
+  "w_out_Fe3O4": 9.173087058981159e-06,
+  "w_out_FeO": 9.173087058981157e-06,
+  "w_out_Fe": 0.7249390902234027,
   "valid": true,
-  "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Lab\\Dry_Oxidation_Reactor_Lab.py"
+  "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Lab\\Dry_Oxidation_Reactor_Lab.py",
+  "gas_T": 600.0,
+  "solid_T": 1073.0
 }

@@ -1,0 +1,639 @@
+match solve: H=0.7 norif=2500 Tg=1050.0 Ts=1173.9
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.mw_comp' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.enth_mol_form_comp' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_1' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_2' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_3' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_4' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_5' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_6' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_7' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_8' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.mw_comp' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.dens_mass_comp_skeletal' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_1' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_2' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_3' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_4' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_5' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_6' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_7' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_8' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.enth_mol_form_comp' to mutable.
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:50 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW1]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,OW2]
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 18:27:51 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+WARNING: model contains export suffix 'scaling_factor' that contains 8
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 1 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 8
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 1 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 168
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 126 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 168
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 126 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 168
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 126 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 1465
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 1402
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 478
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 294
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: maxIterations
+    - message from solver: Ipopt 3.13.2\x3a Maximum Number of Iterations
+      Exceeded.
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: maxIterations
+    - message from solver: Ipopt 3.13.2\x3a Maximum Number of Iterations
+      Exceeded.
+WARNING: model contains export suffix 'scaling_factor' that contains 8
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 6 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 8
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 6 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [init industrial] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 1/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 2/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 3/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 4/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 5/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 6/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 7/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 8/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 9/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 10/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 11/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 12/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 13/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 14/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 15/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 16/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 17/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 18/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 19/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 20/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  final  optimal
+MATCH: term=optimal err_mass=0.00911 n_bad=0 T_out=1160.1 X_prod=10.546
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: maxIterations
+    - message from solver: Ipopt 3.13.2\x3a Maximum Number of Iterations
+      Exceeded.
+  rung 0.70 -> 0.75 m: maxIterations
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+    mid 0.725 m: optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+    mid 0.738 m: optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+    mid 0.744 m: optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  retry 0.75 m from 0.744: optimal
+POINT {"reactor": "wet", "knob": "H", "value": 0.75, "abs_flow": null, "path": "walk", "Ts_in": 1173.9, "Tg_in": 1050.0, "term": "optimal", "err_mass": 0.009362799109436782, "gas_feasible": true, "banner_ok": true, "X_solid": 42.06500663261867, "X_gas": 27.636245970083156, "n_bad": 0, "T_gas_out": 1162.4202965978825, "T_solid_out": 1162.4680799523708, "D": 0.054, "H": 0.75, "X_prod": 11.317676335548327, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.000780825832373747, "w_out_Fe2O3": 0.0, "w_out_Fe3O4": 0.13825402075752652, "w_out_FeO": 0.3496544463550233, "w_out_Fe": 0.5120915328874914, "valid": true}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  rung 0.75 -> 0.80 m: optimal
+POINT {"reactor": "wet", "knob": "H", "value": 0.8, "abs_flow": null, "path": "walk", "Ts_in": 1173.9, "Tg_in": 1050.0, "term": "optimal", "err_mass": 3.5314797901256245, "gas_feasible": false, "banner_ok": false, "X_solid": 35.563120947608546, "X_gas": 34.45772393580341, "n_bad": 0, "T_gas_out": 1183.2289861827353, "T_solid_out": 1183.2660164084286, "D": 0.054, "H": 0.8, "X_prod": 7.467682018530821, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0008067528345307137, "w_out_Fe2O3": 0.0524525046607747, "w_out_Fe3O4": 0.08914665625778379, "w_out_FeO": 0.27189654621660825, "w_out_Fe": 0.5512578715792172, "valid": false}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  rung 0.80 -> 0.85 m: optimal
+POINT {"reactor": "wet", "knob": "H", "value": 0.85, "abs_flow": null, "path": "walk", "Ts_in": 1173.9, "Tg_in": 1050.0, "term": "optimal", "err_mass": 0.17740132646634177, "gas_feasible": false, "banner_ok": false, "X_solid": 43.05033705297047, "X_gas": 29.519806899645012, "n_bad": 0, "T_gas_out": 1174.7011828077589, "T_solid_out": 1174.371134831908, "D": 0.054, "H": 0.85, "X_prod": 12.008761158628669, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.000785096617389056, "w_out_Fe2O3": 0.0036029426613516185, "w_out_Fe3O4": 0.1458288123913288, "w_out_FeO": 0.3473652227957741, "w_out_Fe": 0.5006438184868176, "valid": false}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  rung 0.85 -> 0.90 m: optimal
+POINT {"reactor": "wet", "knob": "H", "value": 0.9, "abs_flow": null, "path": "walk", "Ts_in": 1173.9, "Tg_in": 1050.0, "term": "optimal", "err_mass": 1.6923513488654631, "gas_feasible": false, "banner_ok": false, "X_solid": 43.18241190729768, "X_gas": 30.382620196538117, "n_bad": 0, "T_gas_out": 1172.5939352036435, "T_solid_out": 1172.4060414684957, "D": 0.054, "H": 0.9, "X_prod": 12.2790358419825, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0007870433343778007, "w_out_Fe2O3": 0.0054129478950353405, "w_out_Fe3O4": 0.14861443298237917, "w_out_FeO": 0.34246277108133777, "w_out_Fe": 0.49824730143161466, "valid": false}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: maxIterations
+    - message from solver: Ipopt 3.13.2\x3a Maximum Number of Iterations
+      Exceeded.
+  rung 0.90 -> 0.95 m: maxIterations
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+    mid 0.925 m: optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+    mid 0.938 m: optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+    mid 0.944 m: optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  retry 0.95 m from 0.944: optimal
+POINT {"reactor": "wet", "knob": "H", "value": 0.95, "abs_flow": null, "path": "walk", "Ts_in": 1173.9, "Tg_in": 1050.0, "term": "optimal", "err_mass": 5.7897313080067, "gas_feasible": false, "banner_ok": false, "X_solid": 37.83167689735953, "X_gas": 33.86753148258551, "n_bad": 0, "T_gas_out": 1172.4351608066338, "T_solid_out": 1172.380144683884, "D": 0.054, "H": 0.95, "X_prod": 8.500856990747264, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0008136549126029212, "w_out_Fe2O3": 0.053623931329731755, "w_out_Fe3O4": 0.10063722415970174, "w_out_FeO": 0.28168501410776037, "w_out_Fe": 0.5273387780645269, "valid": false}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  rung 0.95 -> 1.00 m: optimal
+POINT {"reactor": "wet", "knob": "H", "value": 1.0, "abs_flow": null, "path": "walk", "Ts_in": 1173.9, "Tg_in": 1050.0, "term": "optimal", "err_mass": 5.989844165434535, "gas_feasible": false, "banner_ok": false, "X_solid": 38.13781512840041, "X_gas": 34.17599364898145, "n_bad": 0, "T_gas_out": 1172.8891055799397, "T_solid_out": 1172.8727255555855, "D": 0.054, "H": 1.0, "X_prod": 8.532831222229412, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0008156711144895096, "w_out_Fe2O3": 0.056542220845505836, "w_out_Fe3O4": 0.10074425277988341, "w_out_FeO": 0.2810070395264158, "w_out_Fe": 0.523444906358623, "valid": false}
+WALKDONE direction=up landed_at=1.000 m

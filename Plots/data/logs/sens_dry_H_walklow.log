@@ -1,0 +1,979 @@
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.mw_comp' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.enth_mol_form_comp' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_1' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_2' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_3' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_4' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_5' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_6' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_7' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.gas_properties.cp_param_8' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.mw_comp' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.dens_mass_comp_skeletal' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_1' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_2' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_3' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_4' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_5' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_6' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_7' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.cp_param_8' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.solid_properties.enth_mol_form_comp' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.dry_reactions.E_chr' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.dry_reactions.E_g' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.dry_reactions.E_s' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.dry_reactions.Xchr_O2_b' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.dry_reactions.a_O2_b' to mutable.
+WARNING: Params with units must be mutable.  Converting Param
+'fs.dry_reactions.b_O2_b' to mutable.
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.area
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:22 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.bubble.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.gas_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.area
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.05,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.1,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.15,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.2,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.25,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.3,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.35,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.4,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.45,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.5,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.55,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.6,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.65,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.7,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.75,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.8,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.85,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.9,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,0.95,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.rate_reaction_extent[0.0,1.0,R1]
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+2026-09-01 17:36:23 [WARNING] idaes.core.util.scaling: Missing scaling factor for fs.BFB.solid_emulsion.heat
+WARNING: model contains export suffix 'scaling_factor' that contains 8
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 1 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 8
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 1 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 168
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 126 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 168
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 126 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 168
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 126 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 1570
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 1507
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 583
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: maxIterations
+    - message from solver: Ipopt 3.13.2\x3a Maximum Number of Iterations
+      Exceeded.
+WARNING: model contains export suffix 'scaling_factor' that contains 294
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: maxIterations
+    - message from solver: Ipopt 3.13.2\x3a Maximum Number of Iterations
+      Exceeded.
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 380 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 8
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 6 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 8
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 6 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=1.0e-04] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.00014] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.000196] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.000274] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.000384] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.000538] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.000753] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.00105] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.00148] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.00207] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.00289] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.00405] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.00567] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.00794] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.0111] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.0156] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: infeasible
+    - message from solver: Ipopt 3.13.2\x3a Converged to a locally infeasible
+      point. Problem may be infeasible.
+  [ind sf=0.0218] -> infeasible
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.0187(sub)] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.0261] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.0366] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.0512] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: maxIterations
+    - message from solver: Ipopt 3.13.2\x3a Maximum Number of Iterations
+      Exceeded.
+  [ind sf=0.0717] -> maxIterations
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.0615(sub)] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.0861] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.12] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.169] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.236] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.331] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.463] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.648] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=0.907] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind sf=1] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [ind scale_factor=final] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 1/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 2/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 3/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 4/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 5/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 6/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 7/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: infeasible
+    - message from solver: Ipopt 3.13.2\x3a Converged to a locally infeasible
+      point. Problem may be infeasible.
+  [cont 8/20] -> infeasible
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: infeasible
+    - message from solver: Ipopt 3.13.2\x3a Converged to a locally infeasible
+      point. Problem may be infeasible.
+  [cont8 sf=1.0e-04] -> infeasible
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.00014] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.000196] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.000274] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.000384] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.000538] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.000753] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.00105] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.00148] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.00207] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.00289] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.00405] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.00567] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.00794] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.0111] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.0156] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.0218] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.0305] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.0427] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.0598] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.0837] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.117] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.164] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.23] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.321] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.45] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.63] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=0.882] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 sf=1] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont8 scale_factor=final] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 9/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 10/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 11/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+WARNING: Loading a SolverResults object with a warning status into
+model.name="fs.BFB";
+    - termination condition: infeasible
+    - message from solver: Ipopt 3.13.2\x3a Converged to a locally infeasible
+      point. Problem may be infeasible.
+  [cont 12/20] -> infeasible
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=1.0e-04] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.00014] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.000196] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.000274] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.000384] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.000538] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.000753] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.00105] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.00148] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.00207] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.00289] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.00405] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.00567] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.00794] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.0111] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.0156] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.0218] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.0305] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.0427] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.0598] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.0837] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.117] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.164] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.23] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.321] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.45] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.63] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=0.882] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 sf=1] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont12 scale_factor=final] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 13/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 14/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 15/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 16/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 17/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 18/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 19/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [cont 20/20] -> optimal
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [final] -> optimal
+POINT {"reactor": "dry", "knob": "H", "value": 0.9, "abs_flow": null, "path": "cold", "Ts_in": 1073.0, "Tg_in": 600.0, "term": "optimal", "err_mass": 0.0005306867693521857, "gas_feasible": true, "banner_ok": true, "X_solid": 20.971087971373663, "X_gas": 13.970353723642631, "n_bad": 0, "T_gas_out": 1081.6976988150195, "T_solid_out": 1091.1139069785158, "D": 0.054, "H": 0.9000000000000004, "X_prod": 20.97077322117882, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0007523939436607743, "w_out_Fe2O3": 0.2750425636024795, "w_out_Fe3O4": 9.173087058981159e-06, "w_out_FeO": 9.173087058981157e-06, "w_out_Fe": 0.7249390902234027, "valid": true}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [sens H=0.8] -> optimal
+POINT {"reactor": "dry", "knob": "H", "value": 0.8, "abs_flow": null, "path": "walk", "Ts_in": 1073.0, "Tg_in": 600.0, "term": "optimal", "err_mass": 0.0005306868461153798, "gas_feasible": true, "banner_ok": true, "X_solid": 19.75165567019076, "X_gas": 13.158001946300313, "n_bad": 0, "T_gas_out": 1059.0652220384159, "T_solid_out": 1068.5387644736713, "D": 0.054, "H": 0.8, "X_prod": 19.75135922217285, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0007487769691559673, "w_out_Fe2O3": 0.2603006570400367, "w_out_Fe3O4": 9.217397746232462e-06, "w_out_FeO": 9.217397746232462e-06, "w_out_Fe": 0.7396809081644709, "valid": true}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [sens H=0.82] -> optimal
+POINT {"reactor": "dry", "knob": "H", "value": 0.82, "abs_flow": null, "path": "walk", "Ts_in": 1073.0, "Tg_in": 600.0, "term": "optimal", "err_mass": 0.0005306867693688588, "gas_feasible": true, "banner_ok": true, "X_solid": 19.991332751637074, "X_gas": 13.317668130937662, "n_bad": 0, "T_gas_out": 1063.5220009704187, "T_solid_out": 1072.985323446491, "D": 0.054, "H": 0.82, "X_prod": 19.991032706361636, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0007494878785620421, "w_out_Fe2O3": 0.26320938526258547, "w_out_Fe3O4": 9.208654796703464e-06, "w_out_FeO": 9.208654796703464e-06, "w_out_Fe": 0.736772197427821, "valid": true}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [sens H=0.84] -> optimal
+POINT {"reactor": "dry", "knob": "H", "value": 0.84, "abs_flow": null, "path": "walk", "Ts_in": 1073.0, "Tg_in": 600.0, "term": "optimal", "err_mass": 0.0005306867693688588, "gas_feasible": true, "banner_ok": true, "X_solid": 20.22907419502955, "X_gas": 13.476044847658109, "n_bad": 0, "T_gas_out": 1067.938770598792, "T_solid_out": 1077.3910367373371, "D": 0.054, "H": 0.84, "X_prod": 20.22877058154787, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0007501930466461192, "w_out_Fe2O3": 0.2660891762996496, "w_out_Fe3O4": 9.199998825419568e-06, "w_out_FeO": 9.199998825419568e-06, "w_out_Fe": 0.7338924237026994, "valid": true}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [sens H=0.86] -> optimal
+POINT {"reactor": "dry", "knob": "H", "value": 0.86, "abs_flow": null, "path": "walk", "Ts_in": 1073.0, "Tg_in": 600.0, "term": "optimal", "err_mass": 0.0005326596346788879, "gas_feasible": true, "banner_ok": true, "X_solid": 20.465237944551966, "X_gas": 13.63337360040532, "n_bad": 0, "T_gas_out": 1072.3222354160093, "T_solid_out": 1081.7628441941474, "D": 0.054, "H": 0.86, "X_prod": 20.464936219271372, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0007508935925208723, "w_out_Fe2O3": 0.268944567843258, "w_out_Fe3O4": 9.18761402980279e-06, "w_out_FeO": 9.185276759087538e-06, "w_out_Fe": 0.7310370598687439, "valid": true}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [sens H=0.88] -> optimal
+POINT {"reactor": "dry", "knob": "H", "value": 0.88, "abs_flow": null, "path": "walk", "Ts_in": 1073.0, "Tg_in": 600.0, "term": "optimal", "err_mass": 0.0005306867692188005, "gas_feasible": true, "banner_ok": true, "X_solid": 20.700652116274775, "X_gas": 13.790196902003776, "n_bad": 0, "T_gas_out": 1076.6876931823695, "T_solid_out": 1086.1171528340437, "D": 0.054, "H": 0.88, "X_prod": 20.700341424989496, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0007515918002436098, "w_out_Fe2O3": 0.271785466733717, "w_out_Fe3O4": 9.18287712236678e-06, "w_out_FeO": 9.18287712234845e-06, "w_out_Fe": 0.7281961675120385, "valid": true}
+WARNING: model contains export suffix 'scaling_factor' that contains 42
+component keys that are not exported as part of the NL file.  Skipping.
+WARNING: model contains export suffix 'scaling_factor' that contains 392 keys
+that are not Var, Constraint, Objective, or the model.  Skipping.
+  [sens H=0.9 ANCHOR] -> optimal
+POINT {"reactor": "dry", "knob": "H", "value": 0.9, "abs_flow": null, "path": "anchor", "Ts_in": 1073.0, "Tg_in": 600.0, "term": "optimal", "err_mass": 0.0005306775608867652, "gas_feasible": true, "banner_ok": true, "X_solid": 20.938596388242615, "X_gas": 13.948708704863574, "n_bad": 0, "T_gas_out": 1081.0959786450208, "T_solid_out": 1090.5141487433984, "D": 0.054, "H": 0.9, "X_prod": 20.93828212550641, "solid_mass_in": 0.0006901775147928993, "solid_mass_out": 0.0007522975699377281, "w_out_Fe2O3": 0.2746516060081615, "w_out_Fe3O4": 9.174262179624994e-06, "w_out_FeO": 9.174262179525213e-06, "w_out_Fe": 0.7253300454674849, "anchor_drift_dX": 0.03249158313104772, "anchor_drift_dT": 0.599758235117406, "valid": true}

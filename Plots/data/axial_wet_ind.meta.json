@@ -11,6 +11,13 @@
   "T_solid_out": 1162.1148540355537,
   "D": 6.5,
   "H": 5,
+  "X_prod": 39.93627972176421,
+  "solid_mass_in": 10.0,
+  "solid_mass_out": 11.27483497107213,
+  "w_out_Fe2O3": 0.0,
+  "w_out_Fe3O4": 0.1675269838992944,
+  "w_out_FeO": 0.29974130048519965,
+  "w_out_Fe": 0.532731715615506,
   "valid": true,
   "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Industrial\\Wet_Oxidation_Reactor.py"
 }

@@ -11,6 +11,15 @@
   "T_solid_out": 1034.7547840385296,
   "D": 0.054,
   "H": 1.0,
+  "X_prod": 36.051218699898,
+  "solid_mass_in": 0.0006901775147928993,
+  "solid_mass_out": 0.0005930328910170237,
+  "w_out_Fe2O3": 0.010917720176731283,
+  "w_out_Fe3O4": 0.5173621286818537,
+  "w_out_FeO": 0.17825666348349214,
+  "w_out_Fe": 0.2934634876579214,
   "valid": true,
-  "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Lab\\Reduction_Reactor_Lab.py"
+  "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Lab\\Reduction_Reactor_Lab.py",
+  "gas_T": 1050.0,
+  "solid_T": 1173.9
 }

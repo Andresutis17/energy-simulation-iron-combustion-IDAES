@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "C:\Users\habbo\OneDrive\Desktop\Tesis_Code\Plots\Scripts\runner_sens.py", line 91, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\habbo\OneDrive\Desktop\Tesis_Code\Plots\Scripts\runner_sens.py", line 69, in main
+    m, results = mod.solve_case(target, verbose=False, **solve_opts)  # One solve per process
+                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\habbo\OneDrive\Desktop\Tesis_Code\Reliable_models\Lab\Wet_Oxidation_Reactor_Lab.py", line 173, in solve_case
+    b.initialize(outlvl=idaeslog.CRITICAL,
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 gas_phase_state_args=gas_args, solid_phase_state_args=sol_args)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\habbo\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\idaes\core\base\unit_model.py", line 543, in initialize
+    flags = blk.initialize_build(*args, **kwargs)
+  File "C:\Users\habbo\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\idaes\models_extra\gas_solid_contactors\unit_models\bubbling_fluidized_bed.py", line 2602, in initialize_build
+    results = opt.solve(blk, tee=slc.tee)
+  File "C:\Users\habbo\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pyomo\opt\base\solvers.py", line 691, in solve
+    _model.solutions.load_from(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        result,
+        ^^^^^^^
+        select=self._select_index,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        default_variable_value=self._default_variable_value,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\habbo\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pyomo\core\base\PyomoModel.py", line 230, in load_from
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Cannot load a SolverResults object with bad status: error

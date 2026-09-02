@@ -1,0 +1,30 @@
+re-running 25 wet points into _fe34 csvs (3 workers)
+  wet T_solid 1023 -> valid=True X_prod=9.188203587599666
+  wet T_solid 923 -> valid=True X_prod=7.957111451491541
+  wet T_solid 1073 -> valid=True X_prod=9.743875147883347
+  wet T_solid 1123 -> valid=True X_prod=10.035875165108658
+  wet T_solid 1173.9 -> valid=True X_prod=10.54599338953444
+  wet T_solid 1223 -> valid=True X_prod=10.899186961728306
+  wet T_solid 973 -> valid=False X_prod=7.676802670606882
+  wet gas_flow 0.5 -> valid=False X_prod=8.10826735955955
+  wet gas_flow 0.8 -> valid=True X_prod=10.417744220494695
+  wet gas_flow 0.75 -> valid=False X_prod=12.057781803878294
+  wet gas_flow 0.85 -> valid=True X_prod=10.47928860961767
+  wet gas_flow 1 -> valid=True X_prod=10.54599338953444
+  wet gas_flow 0.9 -> valid=True X_prod=10.389551604708194
+  wet gas_flow 2 -> valid=True X_prod=9.831780229807288
+  wet gas_flow 1.5 -> valid=True X_prod=10.559769374220561
+  wet solid_flow 1 -> valid=True X_prod=10.54599338953444
+  wet solid_flow 1.5 -> valid=True X_prod=4.82961524597294
+  wet solid_flow 2 -> valid=True X_prod=2.769931064856744
+  wet porosity 0.15 -> valid=False X_prod=None
+  wet porosity 0.2 -> valid=False X_prod=None
+  wet porosity 0.27 -> valid=True X_prod=10.54599338953444
+  wet solid_flow 0.75 -> valid=False X_prod=1.7037260874155866
+  wet porosity 0.35 -> valid=True X_prod=10.586056590740949
+  wet solid_flow 0.5 -> valid=False X_prod=9.224654528393874
+  wet porosity 0.4 -> valid=True X_prod=10.729202870500805
+wrote sens_wet_T_solid_fe34.csv (6/7 valid)
+wrote sens_wet_gas_flow_fe34.csv (6/8 valid)
+wrote sens_wet_solid_flow_fe34.csv (3/5 valid)
+wrote sens_wet_porosity_fe34.csv (3/5 valid)

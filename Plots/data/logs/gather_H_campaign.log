@@ -1,0 +1,7 @@
+  [wet] X=40.89 (exp 40.89, d0.000)  Xg=26.77 (d0.003)  T=1160.1 (exp 1160.1, d0.01)  OK
+  [wet] X_prod=10.55 (exp 10.55, d0.00) - soft
+  [reduction] X=99.06 (exp 99.06, d0.002)  Xg=29.62 (d0.005)  T=1034.8 (exp 1034.8, d0.05)  OK
+  [reduction] X_prod=36.05 (exp 36.05, d0.00) - soft
+  [dry] X=20.97 (exp 20.97, d0.001)  Xg=13.97 (d0.000)  T=1091.1 (exp 1091.1, d0.01)  OK
+  [dry] X_prod=20.97 (exp 20.97, d0.00) - soft
+  [dry_H] drift dX=0.033 pp dT=0.60 K

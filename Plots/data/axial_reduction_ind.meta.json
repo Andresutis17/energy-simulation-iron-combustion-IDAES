@@ -11,6 +11,13 @@
   "T_solid_out": 1028.5615122198546,
   "D": 6.5,
   "H": 5,
+  "X_prod": 33.40693953529681,
+  "solid_mass_in": 10.0,
+  "solid_mass_out": 8.573402182015537,
+  "w_out_Fe2O3": 0.005212472876084009,
+  "w_out_Fe3O4": 0.405210604959289,
+  "w_out_FeO": 0.31703357036561614,
+  "w_out_Fe": 0.27254335179859707,
   "valid": true,
   "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Industrial\\Reduction_Reactor.py"
 }

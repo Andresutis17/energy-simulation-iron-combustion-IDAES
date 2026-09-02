@@ -11,6 +11,13 @@
   "T_solid_out": 1079.5727586365483,
   "D": 6.5,
   "H": 5,
+  "X_prod": 20.682668820501373,
+  "solid_mass_in": 10.0,
+  "solid_mass_out": 10.88907367162132,
+  "w_out_Fe2O3": 0.2715723747908925,
+  "w_out_Fe3O4": 9.183517626539833e-06,
+  "w_out_FeO": 9.18351762653983e-06,
+  "w_out_Fe": 0.7284092581738544,
   "valid": true,
   "source": "C:\\Users\\habbo\\OneDrive\\Desktop\\Tesis_Code\\Reliable_models\\Industrial\\Dry_Oxidation_Reactor.py"
 }

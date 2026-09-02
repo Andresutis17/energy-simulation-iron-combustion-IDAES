@@ -3,6 +3,7 @@ The cold start dies at the same T point for gas and solid, so T_gas is walked up
 from the lab match in small steps, each solve used for the next step
 """
 
+import csv
 import json
 import os
 import shutil

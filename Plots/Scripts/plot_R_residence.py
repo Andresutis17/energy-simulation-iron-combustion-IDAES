@@ -52,7 +52,7 @@ def main():
             mdot_i = meta["solid_mass_out"] * rows[-1][f"w_{key}"]
             # Absent species = exact zero 
             taus[key] = (m_i / mdot_i
-                         if mdot_i > meta["solid_mass_out"] * 1e-6 else None)
+                         if mdot_i > meta["solid_mass_out"] * 1e-4 else None)
 
         # Absent species get no bar
         plot_species = [(k, lbl) for k, lbl in SPECIES if taus[k] is not None]

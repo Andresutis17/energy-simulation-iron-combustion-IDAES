@@ -10,8 +10,9 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import common  
-from runner_axial import endpoint, load_module  
+import common
+import dp_patch
+from runner_axial import endpoint, load_module
 
 # Knobs: model inputs used in sweeps
 KNOBS = {
@@ -61,21 +62,31 @@ def main():
     ap.add_argument("--knob", required=True)
     ap.add_argument("--value", required=True, type=float)
     ap.add_argument("--ncont", type=int, default=None)
+    ap.add_argument("--dp", type=float, default=None)
     args = ap.parse_args()
     mod = load_module(common.LAB_SCRIPTS[args.reactor], f"sens_{args.reactor}")
     target = dict(mod.LAB)
     target["H"] = common.LAB_MATCH[args.reactor]["H"]
     target["n_orifice"] = common.LAB_MATCH[args.reactor]["n_orifice"]
     abs_flow = apply_knob(target, mod, args.knob, args.value)
-    solve_opts = {"n_cont": args.ncont} if args.ncont else {}
-    m, results = mod.solve_case(target, verbose=False, **solve_opts)  # One solve per process
+    if args.dp is not None:
+        m, results, dp_path, _ = dp_patch.solve_lab_dp(
+            mod, target, dp_patch.to_m(args.dp), args.reactor,
+            verbose=False, ncont=args.ncont)
+    else:
+        dp_path = None
+        solve_opts = {"n_cont": args.ncont} if args.ncont else {}
+        # One solve per process
+        m, results = mod.solve_case(target, verbose=False, **solve_opts)
     report = endpoint(m, args.reactor)
     validity = getattr(mod, "_validity_banner", lambda res: "")(results)
     err_mass = results.get("err_mass")
     point = {
         "reactor": args.reactor, "knob": args.knob, "value": args.value,
         "abs_flow": abs_flow,
-        "path": "cold+n_cont40" if args.ncont else "cold",
+        "path": ("cold+n_cont40" if args.ncont else "cold")
+                if dp_path is None else
+                dp_path + ("+n_cont40" if args.ncont else ""),
         "Ts_in": target["solid_T"], "Tg_in": target["gas_T"],
         "term": results.get("termination", "?"), "err_mass": err_mass,
         "gas_feasible": results.get("gas_feasible"), "banner_ok": validity == "",

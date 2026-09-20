@@ -31,10 +31,13 @@ IND_SCRIPTS = {
 
 # Lab operating points that match the industrial reactors
 LAB_MATCH = {
-    "reduction": {"H": 1, "n_orifice": 2500}, 
-    "wet": {"H": 0.70, "n_orifice": 2500},        
-    "dry": {"H": 0.90, "n_orifice": 2500},        
+    "reduction": {"H": 0.90, "n_orifice": 2500},  # re anchor, before it was 1 m
+    "wet": {"H": 0.70, "n_orifice": 2500},
+    "dry": {"H": 0.90, "n_orifice": 2500},
 }
+
+# PLOT_ERA=_dp028 
+SUFFIX = os.environ.get("PLOT_ERA", "")
 
 # Conversion reports
 REPORT_KEYS = {
@@ -68,27 +71,39 @@ def ensure_dirs():
     os.makedirs(FIGS, exist_ok=True)
 
 
+# Plots whose y axis is a conversion X 
+CONVERSION_PREFIXES = ("S", "T1a", "T1b", "T1c", "T2a", "T2b", "T2c",
+                       "B_conversion")
+
+
 def save_fig(fig, name):
 
     """
-    One png per figure
+    One png per figure, routed to Figs/Conversion when the y axis
+    is a conversion X
     """
     ensure_dirs()
-    fig.savefig(os.path.join(FIGS, f"{name}.png"), dpi=300,
+    out = os.path.join(FIGS, "Conversion"
+                       if name.startswith(CONVERSION_PREFIXES) else "")
+    os.makedirs(out, exist_ok=True)
+    fig.savefig(os.path.join(out, f"{name}.png"), dpi=300,
                 bbox_inches="tight")
 
 
 def load_axial(reactor, scale, suffix=None):
     """
     Return rows and meta for one solved case
+
+
     """
     import csv
-    with open(axial_csv(reactor, scale, suffix), newline="") as f:
+    sfx = SUFFIX if suffix is None else suffix
+    with open(axial_csv(reactor, scale, sfx), newline="") as f:
         rows = list(csv.DictReader(f))
     for r in rows:
         for k in r:
             r[k] = float(r[k]) if r[k] != "" else None
-    with open(axial_meta(reactor, scale, suffix)) as f:
+    with open(axial_meta(reactor, scale, sfx)) as f:
         meta = json.load(f)
     return rows, meta
 
@@ -176,6 +191,24 @@ def x_prod_from_w(reactor, mass_frac):
     else:
         fe_prod = fe_mol["Fe2O3"]
     return 100.0 * fe_prod / tot
+
+
+def x_stages_from_w(reactor, mass_frac):
+
+    """
+    The chain links before the product, as acumulative Fe conversions
+    on the same basis as x_prod_from_w
+    """
+    fe_mol = {sp: mass_frac[sp] / MW_S[sp] * N_FE[sp] for sp in FE_SP}
+    tot = sum(fe_mol.values())
+    if tot <= 1e-12:
+        return {}
+    if reactor == "reduction":
+        return {"fe23": 100.0 * (tot - fe_mol["Fe2O3"]) / tot,
+                "fe34": 100.0 * (fe_mol["FeO"] + fe_mol["Fe"]) / tot}
+    if reactor == "wet":
+        return {"feox": 100.0 * (fe_mol["FeO"] + fe_mol["Fe3O4"]) / tot}
+    return {}
 
 
 def x_prod_col(reactor, rows):

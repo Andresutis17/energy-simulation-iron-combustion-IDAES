@@ -18,8 +18,8 @@ LOGDIR = os.path.join(common.DATA, "logs")
 
 # The known good and real answers, if the solver misses them, then abort the solve
 EXPECTED = {
-    "reduction": {"X_solid": 99.06, "X_gas": 29.63, "T_solid_out": 1034.8,
-                  "X_prod": 36.05},
+    "reduction": {"X_solid": 98.88, "X_gas": 28.29, "T_solid_out": 1039.6,
+                  "X_prod": 33.54},  # re anchor H=0.90 
     "wet": {"X_solid": 40.89, "X_gas": 26.77, "T_solid_out": 1160.1,
             "X_prod": 10.55},
     "dry": {"X_solid": 20.97, "X_gas": 13.97, "T_solid_out": 1091.1,
@@ -164,6 +164,26 @@ FIELDS = ["reactor", "knob", "value", "abs_flow", "path", "X_solid", "X_gas",
 TIMEOUT_COLD = {"reduction": 1800, "wet": 2400}
 TIMEOUT_LADDER = 3600
 
+# dp= 28mm
+DP_MM = None
+SUFFIX = ""
+
+# dp028 lab match points
+EXPECTED_DP028 = {
+    "reduction": {"X_solid": 98.89, "X_gas": 28.31, "T_solid_out": 1039.5,
+                  "X_prod": 33.58},
+    "wet": {"X_solid": 40.84, "X_gas": 26.74, "T_solid_out": 1160.0,
+            "X_prod": 10.52},
+    "dry": {"X_solid": 20.79, "X_gas": 13.85, "T_solid_out": 1083.2,
+            "X_prod": 20.79},
+}
+
+DP_SOFT_GATE = False
+
+# dp= 28 mm runs are stiffer, so more time
+def timeout_of(reactor):
+    return int(TIMEOUT_COLD.get(reactor, 2400) * (1.5 if DP_MM else 1.0))
+
 
 def csv_path(fam):
     """
@@ -171,16 +191,16 @@ def csv_path(fam):
     """
 
     return os.path.join(common.DATA, f"sens_{FAMILIES[fam]['reactor']}"
-                                     f"_{FAMILIES[fam]['knob']}.csv")
+                                     f"_{FAMILIES[fam]['knob']}{SUFFIX}.csv")
 
 
 def write_csv(fam, rows):
     """
     Write one family's rows to its CSV, sorted by knob value.
-    Rewrites the whole file each time. Frozen families are refused.
+    Rewrites the whole file each time. Frozen families are refused
     """
 
-    if fam in FROZEN_FAMILIES:
+    if fam in FROZEN_FAMILIES and not SUFFIX:
         sys.exit(f"{fam} is frozen, its CSV stays as it is")
     rows = sorted(rows, key=lambda r: float(r["value"]))
     with open(csv_path(fam), "w", newline="") as f:
@@ -231,15 +251,18 @@ def preflight():
     first, if theres an error nothing runs
     """
     ok = True
+    expected_table = EXPECTED_DP028 if DP_MM else EXPECTED
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
         solves = {}
-        for reactor in EXPECTED:
-            log = os.path.join(LOGDIR, f"sens_preflight_{reactor}.log")
+        for reactor in expected_table:
+            log = os.path.join(LOGDIR, f"sens_preflight_{reactor}{SUFFIX}.log")
             cmd = [sys.executable, RUNNER_AXIAL, "--reactor", reactor,
                    "--scale", "lab", "--mode", "point"]
+            if DP_MM:
+                cmd += ["--dp", str(DP_MM)]
             solves[ex.submit(subprocess.run, cmd, stdout=subprocess.PIPE,
-                           stderr=open(log, "w"), timeout=TIMEOUT_COLD.get(
-                               reactor, 2400), cwd=common.HERE, text=True,
+                           stderr=open(log, "w"), timeout=timeout_of(reactor),
+                           cwd=common.HERE, text=True,
                            check=False)] = reactor
         for solve in concurrent.futures.as_completed(solves):
             reactor = solves[solve]
@@ -256,14 +279,19 @@ def preflight():
                 ok = False
                 continue
             point = json.loads(line[6:])
-            expected = EXPECTED[reactor]
+            expected = expected_table[reactor]
             dx = abs(point["X_solid"] - expected["X_solid"])
             dt = abs(point["T_solid_out"] - expected["T_solid_out"])
             dxg = abs(point["X_gas"] - expected["X_gas"])
-            # X_gas is checked too, only works if the 3 numbers match, if not
-            # then abort
-            good = (dx <= GATE_TOL["X"] and dt <= GATE_TOL["T"]
-                    and dxg <= 0.1 and point["valid"])
+            if DP_MM and DP_SOFT_GATE:
+                # Not calibrated yet but a valid landing is ok
+                good = point["valid"]
+                print(f"  [{reactor}]",
+                      flush=True)
+            else:
+                # X_gas is checked too, only works if the 3 values match
+                good = (dx <= GATE_TOL["X"] and dt <= GATE_TOL["T"]
+                        and dxg <= 0.1 and point["valid"])
             print(f"  [{reactor}] X={point['X_solid']:.2f} (exp {expected['X_solid']:.2f},"
                   f" d{dx:.3f})  Xg={point['X_gas']:.2f} (d{dxg:.3f})"
                   f"  T={point['T_solid_out']:.1f} (exp"
@@ -286,11 +314,13 @@ def run_cold_point(fam, spec, value):
     tag = f"{fam}_{value:g}"
     cmd = [sys.executable, RUNNER_COLD, "--reactor", spec["reactor"],
            "--knob", spec["knob"], "--value", str(value)]
-    log = os.path.join(LOGDIR, f"sens_{tag}.log")
+    if DP_MM:
+        cmd += ["--dp", str(DP_MM)]
+    log = os.path.join(LOGDIR, f"sens_{tag}{SUFFIX}.log")
     try:
         with open(log, "w") as lf:
             p = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=lf,
-                               timeout=TIMEOUT_COLD[spec["reactor"]],
+                               timeout=timeout_of(spec["reactor"]),
                                cwd=common.HERE, text=True, check=False)
         line = next((ln for ln in p.stdout.splitlines()
                      if ln.startswith("POINT ")), None)
@@ -325,13 +355,16 @@ def run_ladder_family(fam):
     """
     spec = FAMILIES[fam]
     values = ",".join(f"{v:g}" for v in spec["grid"])
-    log = os.path.join(LOGDIR, f"sens_{fam}.log")
+    log = os.path.join(LOGDIR, f"sens_{fam}{SUFFIX}.log")
     cmd = [sys.executable, RUNNER_LADDER, "--knob", spec["knob"],
            "--values", values]
+    if DP_MM:
+        cmd += ["--dp", str(DP_MM)]
     with open(log, "w") as lf:
         try:
             subprocess.run(cmd, stdout=lf, stderr=subprocess.STDOUT,
-                           timeout=spec.get("timeout", TIMEOUT_LADDER),
+                           timeout=int(spec.get("timeout", TIMEOUT_LADDER)
+                                       * (1.5 if DP_MM else 1.0)),
                            cwd=common.HERE, check=False)
         except subprocess.TimeoutExpired:
             pass
@@ -357,31 +390,54 @@ def run_family(fam):
 
 
 def main():
-    which = sys.argv[1] if len(sys.argv) > 1 else "all"
+    """
+    Pick families from argv, --dp 0.28 --suffix _dp028 
+    """
+    global DP_MM, SUFFIX
+    dp_arg = suf_arg = None
+    rest = []
+    argv = iter(sys.argv[1:])
+    for a in argv:
+        if a == "--dp":
+            dp_arg = next(argv, None)
+        elif a == "--suffix":
+            suf_arg = next(argv, None)
+        else:
+            rest.append(a)
+    if (dp_arg is None) != (suf_arg is None):
+        sys.exit("")
+    if dp_arg is not None:
+        DP_MM = float(dp_arg)
+        SUFFIX = suf_arg if suf_arg.startswith("_") else f"_{suf_arg}"
+        print(f"dp = {DP_MM} mm, files end in '{SUFFIX}'",
+              flush=True)
+    which = rest[0] if rest else "all"
     common.ensure_dirs()
     os.makedirs(LOGDIR, exist_ok=True)
+
     # Frozen families are refused before anything runs
-    if which in FROZEN_FAMILIES:
+    if which in FROZEN_FAMILIES and not SUFFIX:
         sys.exit(f"family '{which}' is frozen ")
     if which == "all":
         for fam in FAMILIES:
-            if fam in FROZEN_FAMILIES:
+            if fam in FROZEN_FAMILIES and not SUFFIX:
                 print(f"  [skip] {fam} is frozen",
                       flush=True)
-                
-    # Typing this skips the startup health check 
+
+    # Health check of the solves
     if "nopreflight" not in sys.argv:
         preflight()
     if which == "preflight":
         return
     if which == "all":
-        targets = [f for f in FAMILIES if f not in FROZEN_FAMILIES]
+        targets = [f for f in FAMILIES
+                   if f not in FROZEN_FAMILIES or SUFFIX]
     elif which in ("reduction", "wet", "dry"):
         targets = []
         for f in FAMILIES:
             if FAMILIES[f]["reactor"] != which:
                 continue
-            if f in FROZEN_FAMILIES:
+            if f in FROZEN_FAMILIES and not SUFFIX:
                 print(f"  [skip] {f} is frozen",
                       flush=True)
                 continue

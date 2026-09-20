@@ -9,7 +9,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import common  
+import common
+import gather_sensitivity as gs
 from gather_sensitivity import FAMILIES, csv_path, parse_points_from_log, write_csv
 
 
@@ -33,7 +34,25 @@ def rank(row, source):
 
 
 def main():
-    family, suffixes = sys.argv[1], sys.argv[2:] or ["refined"]
+    # --dp 0.28 --suffix _dp028 merges into the dp028 files
+    argv = iter(sys.argv[1:])
+    dp_arg = suf_arg = None
+    rest = []
+    for a in argv:
+        if a == "--dp":
+            dp_arg = next(argv, None)
+        elif a == "--suffix":
+            suf_arg = next(argv, None)
+        else:
+            rest.append(a)
+    if (dp_arg is None) != (suf_arg is None):
+        sys.exit("")
+    if dp_arg is not None:
+        gs.DP_MM = float(dp_arg)
+        gs.SUFFIX = suf_arg if suf_arg.startswith("_") else f"_{suf_arg}"
+    if not rest:
+        sys.exit("")
+    family, suffixes = rest[0], rest[1:] or ["refined"]
     recipe = FAMILIES[family]
 
     by_value = {}

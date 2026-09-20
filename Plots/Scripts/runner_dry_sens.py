@@ -8,8 +8,9 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import common  
-from runner_axial import endpoint, load_module  
+import common
+import dp_patch
+from runner_axial import endpoint, load_module
 
 
 # Knobs: model inputs used in sweeps
@@ -116,6 +117,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--knob", required=True, choices=KNOBS)
     ap.add_argument("--values", required=True)
+    ap.add_argument("--dp", type=float, default=None)
     args = ap.parse_args()
     values = [float(v) for v in args.values.split(",")]
 
@@ -123,6 +125,8 @@ def main():
     base = dict(mod.LAB)
     base["H"] = common.LAB_MATCH["dry"]["H"]
     base["n_orifice"] = common.LAB_MATCH["dry"]["n_orifice"]
+    if args.dp is not None:
+        base["particle_dia"] = dp_patch.to_m(args.dp)
     base_value = {"T_solid": base["solid_T"], "T_gas": base["gas_T"],
                   "y_O2": base["y_O2"],
                   "porosity": base["particle_porosity"],
@@ -131,8 +135,13 @@ def main():
     if abs(values[0] - base_value) > 1e-9:
         sys.exit(f"first value {values[0]:g} != base {base_value:g}")
 
-    m, results = mod.solve_case(base, verbose=True)  
-    report_step(mod, m, results, base, args.knob, values[0], "cold")
+    if args.dp is not None:
+        m, results, anchor_path, _ = dp_patch.solve_lab_dp(
+            mod, base, base["particle_dia"], "dry", verbose=True)
+    else:
+        m, results = mod.solve_case(base, verbose=True)
+        anchor_path = "cold"
+    report_step(mod, m, results, base, args.knob, values[0], anchor_path)
     base_ep = endpoint(m, "dry")
 
     solver = mod.get_solver()

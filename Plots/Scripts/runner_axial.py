@@ -12,7 +12,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import common  
+import common
+import dp_patch
 
 # Physical constants, identical in every reactor script
 MW_S = {"Fe2O3": 0.15969, "Fe3O4": 0.231533, "FeO": 0.071844,   # kg/mol
@@ -173,11 +174,11 @@ def endpoint(m, reactor):
 
 
 def solve_lab(reactor, h_override, norif_override, verbose, ncont=None,
-              tgas_override=None):
+              tgas_override=None, dp_mm=None):
 
     """
     Solves one lab case, it starts from the model's own lab inputs and
-    overrides only H, n_orifice, gas_T and n_cont
+    overrides only H, n_orifice, gas_T, n_cont and dp
     """
 
     module = load_module(common.LAB_SCRIPTS[reactor], f"{reactor}")
@@ -188,6 +189,11 @@ def solve_lab(reactor, h_override, norif_override, verbose, ncont=None,
         target["n_orifice"] = norif_override
     if tgas_override is not None:
         target["gas_T"] = tgas_override
+    if dp_mm is not None:
+        m, r, dp_path, _ = dp_patch.solve_lab_dp(
+            module, target, dp_patch.to_m(dp_mm), reactor, verbose=verbose)
+        term = r.get("termination", "?")
+        return m, term, r.get("err_mass"), r.get("gas_feasible"), target, dp_path
     if ncont is not None:
         m, r = module.solve_case(target, n_cont=ncont, verbose=verbose)
     else:
@@ -195,18 +201,22 @@ def solve_lab(reactor, h_override, norif_override, verbose, ncont=None,
     term = r.get("termination", "?")
     err_mass = r.get("err_mass", None)
     gas_feasible = r.get("gas_feasible", None)
-    return m, term, err_mass, gas_feasible, target
+    return m, term, err_mass, gas_feasible, target, None
 
 
-def solve_ind(reactor):
+def solve_ind(reactor, dp_mm=None):
     """
-    Solves the industrial reference case 
+    Solves the industrial reference case
     """
 
     mod = load_module(common.IND_SCRIPTS[reactor], f"{reactor}")
+    if dp_mm is not None:
+        m, term, dp_path = dp_patch.solve_ind_dp(
+            mod, dp_patch.to_m(dp_mm), reactor)
+        return m, term, None, None, dp_path
     with contextlib.redirect_stdout(io.StringIO()):
         m = mod.main()
-    return m, "optimal", None, None
+    return m, "optimal", None, None, None
 
 
 def main():
@@ -218,7 +228,8 @@ def main():
     ap.add_argument("--norif", type=float, default=None)
     ap.add_argument("--mode", default="axial", choices=["axial", "point"])
     ap.add_argument("--ncont", type=int, default=None)
-    ap.add_argument("--tgas", type=float, default=None)          
+    ap.add_argument("--tgas", type=float, default=None)
+    ap.add_argument("--dp", type=float, default=None)
     ap.add_argument("--suffix", default=None)
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
@@ -230,17 +241,21 @@ def main():
         bed_h = args.H if args.H is not None else common.LAB_MATCH[args.reactor]["H"]
         orifice_dens = (args.norif if args.norif is not None
                else common.LAB_MATCH[args.reactor]["n_orifice"])
-        model, term, err_mass, gas_feasible, target = solve_lab(
+        model, term, err_mass, gas_feasible, target, dp_path = solve_lab(
             args.reactor, bed_h, orifice_dens, args.verbose,
-            ncont=args.ncont, tgas_override=args.tgas)
+            ncont=args.ncont, tgas_override=args.tgas, dp_mm=args.dp)
     else:
         bed_h, orifice_dens, target = None, None, {}
-        model, term, err_mass, gas_feasible = solve_ind(args.reactor)
+        model, term, err_mass, gas_feasible, dp_path = solve_ind(
+            args.reactor, dp_mm=args.dp)
 
     ep = endpoint(model, args.reactor)
     point = {"reactor": args.reactor, "scale": args.scale,
              "term": term, "err_mass": err_mass,
              "gas_feasible": gas_feasible, **ep}
+    if args.dp is not None:
+        point["dp_mm"] = args.dp
+        point["dp_path"] = dp_path
     point["valid"] = (point["n_bad"] == 0
                       and (gas_feasible is None or gas_feasible)
                       and "optimal" in str(term))
@@ -256,6 +271,9 @@ def main():
         meta = dict(point)
         meta["source"] = (common.LAB_SCRIPTS if args.scale == "lab"
                           else common.IND_SCRIPTS)[args.reactor]
+        if args.dp is not None:
+            meta["particle_dia"] = dp_patch.to_m(args.dp)
+            meta["dp_path"] = dp_path
         if args.scale == "lab":
             meta["gas_T"] = target["gas_T"]
             meta["solid_T"] = target["solid_T"]

@@ -11,8 +11,9 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import common  
-from gather_sensitivity import FIELDS, FAMILIES, csv_path, write_csv  
+import common
+import gather_sensitivity as gs
+from gather_sensitivity import FIELDS, csv_path, write_csv
 
 # The points that need a retry 
 RETRIES = [
@@ -66,15 +67,18 @@ def run_one(retry):
     the solved one if it lands and a dead row if it doesnt
     """
     reactor, knob, v = retry
-    tag = f"sens_{reactor}_{knob}_{v:g}_ncont"
+    tag = f"sens_{reactor}_{knob}_{v:g}_ncont{gs.SUFFIX}"
     log = os.path.join(common.DATA, "logs", f"{tag}.log")
     cmd = [sys.executable, RUNNER, "--reactor", reactor, "--knob", knob,
            "--value", str(v), "--ncont", "40"]
+    if gs.DP_MM:
+        cmd += ["--dp", str(gs.DP_MM)]
     try:
         with open(log, "w") as lf:
             proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=lf,
-                               timeout=TIMEOUT[reactor], cwd=common.HERE,
-                               text=True)
+                               timeout=int(TIMEOUT[reactor]
+                                           * (1.5 if gs.DP_MM else 1.0)),
+                               cwd=common.HERE, text=True)
         line = next((ln for ln in proc.stdout.splitlines()
                      if ln.startswith("POINT ")), None)
         if proc.returncode == 0 and line:
@@ -88,9 +92,27 @@ def run_one(retry):
 
 
 def main():
-   
-    if len(sys.argv) > 1:
-        wanted = set(sys.argv[1:])
+    # dp028 aims the retries at the dp028 files
+    argv = iter(sys.argv[1:])
+    dp_arg = suf_arg = None
+    rest = []
+    for a in argv:
+        if a == "--dp":
+            dp_arg = next(argv, None)
+        elif a == "--suffix":
+            suf_arg = next(argv, None)
+        else:
+            rest.append(a)
+    if (dp_arg is None) != (suf_arg is None):
+        sys.exit("")
+    if dp_arg is not None:
+        gs.DP_MM = float(dp_arg)
+        gs.SUFFIX = suf_arg if suf_arg.startswith("_") else f"_{suf_arg}"
+        print(f"dp = {gs.DP_MM} mm, files end in"
+              f" '{gs.SUFFIX}'", flush=True)
+
+    if rest:
+        wanted = set(rest)
         picked = [retry for retry in RETRIES
                   if f"{retry[0]}/{retry[1]}/{retry[2]:g}" in wanted]
         if not picked:

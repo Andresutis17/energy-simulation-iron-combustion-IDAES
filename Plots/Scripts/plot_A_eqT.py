@@ -35,11 +35,12 @@ def main():
     """
     common.apply_style()
     for reactor in ("reduction", "wet", "dry"):
-        meta = json.load(open(common.axial_meta(reactor, "lab", "_eqT")))
+        eq_sfx = f"_eqT{common.SUFFIX}"
+        meta = json.load(open(common.axial_meta(reactor, "lab", eq_sfx)))
         t_in = EQ_T[reactor]
         fig, ax = plt.subplots(figsize=(3.4, 2.7))
         if converged(meta):
-            rows, _ = common.load_axial(reactor, "lab", "_eqT")
+            rows, _ = common.load_axial(reactor, "lab", eq_sfx)
             x = common.cols(rows, "x_norm")
             for i, (col, lbl) in enumerate(TEMP_COLS):
                 ax.plot(x, common.cols(rows, col), color=common.COLORS[i],

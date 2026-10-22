@@ -1,6 +1,6 @@
 
 """
-Plots for sensitivity analysis.
+Plots for sensitivity analysis
 
 Reads the csv files and plots one figure per swept knob around each lab match point
 
@@ -25,7 +25,7 @@ XS_LBL_SHORT = {"reduction": r"$X_{Fe}$", "wet": r"$X_{Fe_3O_4}$",
 XG_LBL = {"reduction": r"$X_{H_2}$", "wet": r"$X_{H_2O}$",
           "dry": r"$X_{O_2}$"}
 
-# Each familys match point knob value, that row gets the "star"
+# Each familys match point knob value, that row gets the star
 BASE = {("reduction", "T_solid"): 1173.9, ("wet", "T_solid"): 1173.9,
         ("dry", "T_solid"): 1073, ("reduction", "y_H2"): 0.99,
         ("dry", "y_O2"): 0.21, ("reduction", "porosity"): 0.27,
@@ -43,8 +43,7 @@ STAGE_LBL = {
 }
 STAGE_C = ["#d95f02", "#8c510a"]
 
-# Every component conversion is on one of the drawn lines, so the
-# alias says which one in the legend
+# Every component conversion is on one of the drawn lines
 ALIAS = {"reduction": r"$X_{Fe}$ (= $X_{FeO}$)",
          "wet": r"$X_{Fe_3O_4}$ (= $X_{FeO}$)",
          "dry": r"$X_{Fe_2O_3}$ (= $X_{Fe}$)"}
@@ -52,7 +51,7 @@ ALIAS = {"reduction": r"$X_{Fe}$ (= $X_{FeO}$)",
 
 def add_stages(ax, pts, reactor):
     """
-    One solid curve per intermediate link (
+    One solid curve per intermediate link 
     """
     for i, (key, lbl) in enumerate(STAGE_LBL[reactor]):
         xy = []
@@ -74,12 +73,11 @@ def add_stages(ax, pts, reactor):
 
 def load(reactor, knob):
     """
-    One familys CSV. with the new 28mm particles
+    One familys CSV. with the 28mm particles
     """
     if common.SUFFIX:
         name = f"sens_{reactor}_{knob}{common.SUFFIX}.csv"
         if not os.path.exists(os.path.join(common.DATA, name)):
-            print(f"  missing {name} (era '{common.SUFFIX}': ")
             return None
     else:
         name = f"sens_{reactor}_{knob}_fe34.csv" if reactor == "wet" \
@@ -89,7 +87,6 @@ def load(reactor, knob):
                     os.path.join(common.DATA, f"sens_wet_{knob}.csv")):
                 name = f"sens_wet_{knob}.csv"
             else:
-                print(f"  missing {name}")
                 return None
     rows = common.load_csv(name)
     
@@ -98,7 +95,6 @@ def load(reactor, knob):
                 if abs(float(r["value"]) - 0.85) > 1e-9]
     if reactor == "wet":
         if "w_out_Fe3O4" not in rows[0]:
-            print(f"  {name} no outlet ")
             return None
         for r in rows:
             try:
@@ -197,7 +193,6 @@ def guard(ok, bad, tag):
     A family whose every step died, so no plot
     """
     if not ok and not bad:
-        print(f" {tag}: no points to plot")
         return False
     return True
 

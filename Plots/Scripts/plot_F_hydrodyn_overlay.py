@@ -17,6 +17,9 @@ REACTORS = [("reduction", "a", "Reduction"),
 
 
 def bed_title(panel, name, lab_meta, ind_meta):
+    """
+    Panel title with both bed heights, lab and industrial
+    """
     return (f"({panel}) {name}, "
             f"$H = {lab_meta['H']:.2f}/{ind_meta['H']:.1f}"
             f"\\,\\mathrm{{m}}$")
@@ -36,8 +39,8 @@ def main():
                 color=common.INK, ls=common.LSTYLES[1])
         ax.axhline(1.0, color=common.INK2, ls=":", lw=1.0)
         if j == 0:
-            ax.text(0.04, 1.12, "column diameter", fontsize=7,
-                    color=common.INK2, va="bottom")
+            ax.text(0.97, 1.15, "Column diameter", fontsize=7,
+                    color=common.INK2, ha="right", va="bottom")
         ax.set_yscale("log")
         ax.set_ylim(0.004, 5)
         ax.set_title(bed_title(panel, name, lab_meta, ind_meta),

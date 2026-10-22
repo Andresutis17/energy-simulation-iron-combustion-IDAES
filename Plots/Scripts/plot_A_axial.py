@@ -1,7 +1,6 @@
 """
-Set of three axial plots per reactor:
-Solid chain, reactant gas in emulsion vs bubble and, phase temperatures
-
+Axial profiles per lab reactor: solid chain, gas lanes,
+phase temperatures
 """
 
 import math
@@ -13,13 +12,11 @@ import matplotlib.pyplot as plt
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common  
 
-# All solids used in the reactors
+# Solids used in the reactors
 SOLIDS = [("w_Fe2O3", r"$w_{Fe_2O_3}$"), ("w_Fe3O4", r"$w_{Fe_3O_4}$"),
           ("w_FeO", r"$w_{FeO}$"), ("w_Fe", r"$w_{Fe}$")]
 
-# One row per reactor, the loop turns each row into 3 PNGs.
-# stem names the files, reactor picks the CSV, title goes on the plot
-# Gases are the curves of the plots
+# One row per reactor
 FIGS = [
     dict(stem="A1", reactor="dry", title="Dry Oxidation",
          gases=[("O2", r"$y_{O_2}$")]),
@@ -29,10 +26,10 @@ FIGS = [
          gases=[("H2", r"$y_{H_2}$"), ("H2O", r"$y_{H_2O}$")]),
 ]
 
-# emulsion = solid line, bubble = dashed line
+# Emulsion = solid line, bubble = dashed line
 LS_EMUL, LS_BUB = 0, 1
 
-# Doesnt plot a specie that never reaches 1 wt% in the bed
+# Doesnt plot a specie that never reaches 1% in the bed
 W_MIN = 0.01
 
 
@@ -48,6 +45,7 @@ def legend_below(ax, ncol, nentries):
 
 
 def new_fig():
+    
     """
     Opens a new plot, same size for every figure
     """

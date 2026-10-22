@@ -5,18 +5,19 @@ import os
 import sys
 
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common
 import outlet_gas as og
 from plot_D_sensitivity import load, split, sane_bad
 
-M_S = 6.901775147928993e-4   # lab solid feed [kg/s]
+M_S = 6.901775147928993e-4   # lab solid feed kg/s
 F0 = {"reduction": 0.02070532544378698, "wet": 0.02070532544378698,
-      "dry": 0.06625704142011833}          # total gas feed [mol/s]
-NU = {"reduction": 1.5, "wet": 4.0 / 3.0, "dry": 0.75}   # gas per Fe
+      "dry": 0.06625704142011833}          # Total gas feed mol/s
+NU = {"reduction": 1.5, "wet": 4.0 / 3.0, "dry": 0.75}   # Gas per Fe
 N_FE = {"reduction": 8.64397e-3, "wet": 1.23588e-2,
-        "dry": 1.23588e-2}                 # Fe feed [mol/s]
+        "dry": 1.23588e-2}                 # Fe feed mol/s
 KNOW_Y = {"reduction": "y_H2", "wet": "y_H2O", "dry": "y_O2"}
 BASE_Y = {"reduction": 0.99, "wet": 0.99, "dry": 0.21}
 
@@ -25,11 +26,13 @@ NAME = {"reduction": "Reduction", "wet": "Wet Oxidation",
         "dry": "Dry Oxidation"}
 SPECIES = [("Fe2O3", r"$w_{Fe_2O_3}$"), ("Fe3O4", r"$w_{Fe_3O_4}$"),
            ("FeO", r"$w_{FeO}$"), ("Fe", r"$w_{Fe}$")]
+
+# The solid chain each reactor draws 
 CHAIN = {"reduction": SPECIES,
          "wet": [s for s in SPECIES if s[0] != "Fe2O3"],
          "dry": [s for s in SPECIES if s[0] in ("Fe2O3", "Fe")]}
 
-# The chains product species carries the star(match point)
+# The chains product species carries the star
 PROD = {"reduction": "Fe", "wet": "Fe3O4", "dry": "Fe2O3"}
 
 
@@ -42,7 +45,7 @@ def lam(reactor, y_in):
 
 def rows_lam(reactor):
     """
-    The y knob family as (lambda, row) pairs
+    The y knob family as lambda row pairs
     """
     rows = load(reactor, KNOW_Y[reactor])
     if not rows:
@@ -58,14 +61,32 @@ def rows_lam(reactor):
     return pairs, flags, rows
 
 
+def rows_gasflow(reactor):
+    """
+    The gas flow factor family as (lambda, row) pairs. 
+    The family runs at the base composition, so lambda scales with the flow factor
+    """
+    rows = load(reactor, "gas_flow")
+    if not rows:
+        return None
+    ok, bad, _ = split(rows, "value")
+    l0 = lam(reactor, BASE_Y[reactor])
+    pairs = [(l0 * p[0], p) for p in ok]
+    flags = [(l0 * p[0], p) for p in sane_bad(bad)]
+    return pairs, flags, rows
+
+
 def star_lam(ax, pairs, reactor, y_of):
     """
     The base case star at its lambda, on the y of curve
     """
+    mval = 1.0 if reactor == "reduction" else BASE_Y[reactor]
+    lam_m = (lam(reactor, BASE_Y[reactor]) * mval
+             if reactor == "reduction" else lam(reactor, mval))
     for _, p in pairs:
         if p[3].get("X_solid") \
-                and abs(float(p[3]["value"]) - BASE_Y[reactor]) < 1e-6:
-            ax.plot([lam(reactor, BASE_Y[reactor])], [y_of(p)],
+                and abs(float(p[3]["value"]) - mval) < 1e-6:
+            ax.plot([lam_m], [y_of(p)],
                     marker="*", ms=11, color=common.INK, ls="none",
                     mec="white", mew=0.6, zorder=5)
             return
@@ -78,23 +99,20 @@ def lam_axis(ax):
     ax.axvline(1.0, color=common.MUTED, ls=":", lw=1.0, zorder=1)
 
 
-def legend_band(fig):
-    """Legend in the bottom band"""
-    fig.tight_layout(rect=[0, 0.18, 1, 1])
-    fig.legend(loc="lower center", bbox_to_anchor=(0.5, 0.015), ncol=4,
-               columnspacing=1.2, handlelength=1.8)
-
-
 def r3(reactor, stem_w):
-    """The R3W figure of one reactor from its (lambda, row) pairs
+    
     """
-    got = rows_lam(reactor)
+    Outlet fractions vs lambda, gas in mole %, gamma on the right axis 
+    """
+    got = rows_gasflow(reactor) if reactor == "reduction" \
+        else rows_lam(reactor)
     if not got:
         return
     pairs, flags, _ = got
+    knob = "gas_flow" if reactor == "reduction" else KNOW_Y[reactor]
 
     fig, ax = plt.subplots(figsize=(3.4, 2.7))
-    drew = False
+    handles = []
     for i, (sp, lbl) in enumerate(CHAIN[reactor]):
         col = common.COLORS[i]
         val = lambda p, sp=sp: p[3].get(f"w_out_{sp}")
@@ -106,32 +124,40 @@ def r3(reactor, stem_w):
             continue
         ax.plot([a for a, _ in xy], [b for _, b in xy], color=col,
                 lw=1.2, label=lbl)
+        handles.append(ax.plot([], [], color=col, lw=1.2, label=lbl)[0])
         if fxy:
             ax.plot([a for a, _ in fxy], [b for _, b in fxy], color=col,
                     marker="o", ms=3.5, mfc="none", ls="none")
-        drew = True
         if sp == PROD[reactor]:
             star_lam(ax, pairs, reactor,
                      lambda p, sp=sp: 100.0 * float(p[3][f"w_out_{sp}"]))
     for j, sp in enumerate(og.GAS_SP[reactor]):
         color = common.INK if j == 0 else og.GAS_PROD
-        xy = sorted((x, og.row_gas_ws(reactor, KNOW_Y[reactor],
-                                      p[3])[sp])
+        xy = sorted((x, og.row_gas_xs(reactor, knob, p[3])[sp])
                     for x, p in pairs
                     if p[3].get("X_gas") not in (None, ""))
         if not xy or max(v for _, v in xy) < 1e-4:
             continue
         ax.plot([a for a, _ in xy], [b for _, b in xy],
-                color=color, lw=1.2, label=rf"$w_{{{sp}}}$ (gas)")
-        drew = True
+                color=color, lw=1.2)
+        handles.append(ax.plot([], [], color=color, lw=1.2,
+                               label=rf"$y_{{{sp}}}$ (gas)")[0])
     lam_axis(ax)
     ax.set_title(f"{NAME[reactor]}: outlet composition\n"
                  f"vs stoichiometric ratio")
     ax.set_xlabel(r"$\lambda$ (stoichiometric ratio)")
-    ax.set_ylabel("Outlet mass fraction [%]")
+    ax.set_ylabel(common.OUTLET_LBL)
     ax.grid(True)
-    if drew:
-        legend_band(fig)
+    if reactor in ("reduction", "wet"):
+        ok_pairs = [(x, p[3]) for x, p in pairs]
+        og.add_gamma(ax, ok_pairs, reactor, knob)
+        handles.append(Line2D([], [], color="#d95f02", ls="--",
+                              lw=1.2, label=r"$\Gamma$"))
+    if handles:
+        fig.tight_layout(rect=[0, 0.18, 1, 1])
+        fig.legend(handles=handles, loc="lower center",
+                   bbox_to_anchor=(0.5, 0.015), ncol=4,
+                   columnspacing=1.2, handlelength=1.8)
     else:
         fig.tight_layout()
     common.save_fig(fig, stem_w)

@@ -93,6 +93,14 @@ def extract_rows(m, reactor):
     bed_points = sorted_domain(b)
     solid_x, H = local_solid_x(b, reactor)
     gas_x, comp = local_gas_x(b, reactor)
+
+    # Local solid reaction rates mol/(m3*s)
+    try:
+        rate_idx = [str(r) for r in
+                    b.solid_emulsion.reactions[0, bed_points[0]]
+                    .params.rate_reaction_idx]
+    except (AttributeError, KeyError, IndexError):
+        rate_idx = []   # no solid reaction block
     rows = []
     for x_norm in bed_points:
         gas_e = b.gas_emulsion.properties[0, x_norm]
@@ -114,8 +122,9 @@ def extract_rows(m, reactor):
             row[f"y_bub_{specie}"] = gas_b.mole_frac_comp[specie].value
         for specie in SOLID_SP:
             row[f"w_{specie}"] = solid_props.mass_frac_comp[specie].value
-        # Product basis conversion + data for the residence time plots
-        #  u_solid is a  scalar along the bed
+        # X_prod: the conversion, last product of the chain
+        # The next columns exist for the residence time.
+        # u_solid is the same at every height, the solid flows at one speed
         row["X_prod"] = common.x_prod_from_w(
             reactor, {k: row[f"w_{k}"] for k in common.FE_SP})
         row["flow_mass"] = solid_props.flow_mass.value
@@ -123,6 +132,9 @@ def extract_rows(m, reactor):
         row["particle_porosity"] = solid_props.particle_porosity.value
         row["delta_e"] = b.delta_e[0, x_norm].value
         row["u_solid"] = b.velocity_superficial_solid[0].value
+        for r in rate_idx:
+            row[f"rate_{r}"] = (b.solid_emulsion.reactions[0, x_norm]
+                                .reaction_rate[r].value)
         rows.append(row)
     return rows, H
 
@@ -159,7 +171,7 @@ def endpoint(m, reactor):
             w_frac = b.solid_emulsion.properties[0, x_norm].mass_frac_comp[specie].value
             if w_frac < -tol:
                 n_bad += 1
-    # Product basis conversion and outlet composition
+    # Conversion (last product of the chain) and outlet composition
     w_out = {k: b.solid_outlet.mass_frac_comp[0, k].value for k in common.FE_SP}
     out = {
         "X_solid": x_solid, "X_gas": x_gas, "n_bad": n_bad,
@@ -170,25 +182,46 @@ def endpoint(m, reactor):
         "solid_mass_in": flow_in, "solid_mass_out": flow_out,
     }
     out.update({f"w_out_{k}": w_out[k] for k in common.FE_SP})
+    out.update(common.extract_operating_kpis(m, reactor))
     return out
 
 
 def solve_lab(reactor, h_override, norif_override, verbose, ncont=None,
-              tgas_override=None, dp_mm=None):
+              tgas_override=None, dp_mm=None, yh2_override=None,
+              yh2o_override=None, yo2_override=None,
+              solid_mult=None, gas_mult=None):
 
     """
     Solves one lab case, it starts from the model's own lab inputs and
-    overrides only H, n_orifice, gas_T, n_cont and dp
+    overrides only H, n_orifice, gas_T, y_H2/y_H2O/y_O2, n_cont, dp and
+    the two flow multipliers 
     """
 
     module = load_module(common.LAB_SCRIPTS[reactor], f"{reactor}")
     target = dict(module.LAB)
+    if solid_mult is not None:
+        # solid_flow knob scaling, runner_sens.apply_knob
+        target["solid_flow_mass"] = target["solid_flow_mass"] * solid_mult
+    if gas_mult is not None:
+        # gas_flow knob scaling, runner_sens.apply_knob
+        target["gas_flow_mol"] = target["gas_flow_mol"] * gas_mult
     if h_override is not None:
         target["H"] = h_override
     if norif_override is not None:
         target["n_orifice"] = norif_override
     if tgas_override is not None:
         target["gas_T"] = tgas_override
+    if yh2_override is not None:
+        # Same composition calculation as the y_H2 sweep knob
+        from runner_sens import _set_reactant_fraction
+        _set_reactant_fraction(target, "H2", yh2_override)
+    if yh2o_override is not None:
+        from runner_sens import _set_reactant_fraction
+        _set_reactant_fraction(target, "H2O", yh2o_override)
+    if yo2_override is not None:
+        # Same composition calculation as the dry y_O2 ladder knob
+        from runner_dry_sens import _set_o2_feed
+        _set_o2_feed(target, yo2_override)
     if dp_mm is not None:
         m, r, dp_path, _ = dp_patch.solve_lab_dp(
             module, target, dp_patch.to_m(dp_mm), reactor, verbose=verbose)
@@ -229,13 +262,21 @@ def main():
     ap.add_argument("--mode", default="axial", choices=["axial", "point"])
     ap.add_argument("--ncont", type=int, default=None)
     ap.add_argument("--tgas", type=float, default=None)
+    ap.add_argument("--yh2", type=float, default=None)
+    ap.add_argument("--yh2o", type=float, default=None)
+    ap.add_argument("--yo2", type=float, default=None)
+    ap.add_argument("--solid", type=float, default=None)
+    ap.add_argument("--gas", type=float, default=None)
     ap.add_argument("--dp", type=float, default=None)
     ap.add_argument("--suffix", default=None)
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
 
     if args.tgas is not None and args.scale != "lab":
-        sys.exit("Problem with tgas")
+        sys.exit("Tgas problem")
+    if (args.solid is not None or args.gas is not None) \
+            and args.scale != "lab":
+        sys.exit("Flow problem")
 
     if args.scale == "lab":
         bed_h = args.H if args.H is not None else common.LAB_MATCH[args.reactor]["H"]
@@ -243,7 +284,10 @@ def main():
                else common.LAB_MATCH[args.reactor]["n_orifice"])
         model, term, err_mass, gas_feasible, target, dp_path = solve_lab(
             args.reactor, bed_h, orifice_dens, args.verbose,
-            ncont=args.ncont, tgas_override=args.tgas, dp_mm=args.dp)
+            ncont=args.ncont, tgas_override=args.tgas, dp_mm=args.dp,
+            yh2_override=args.yh2, yh2o_override=args.yh2o,
+            yo2_override=args.yo2, solid_mult=args.solid,
+            gas_mult=args.gas)
     else:
         bed_h, orifice_dens, target = None, None, {}
         model, term, err_mass, gas_feasible, dp_path = solve_ind(
@@ -277,6 +321,10 @@ def main():
         if args.scale == "lab":
             meta["gas_T"] = target["gas_T"]
             meta["solid_T"] = target["solid_T"]
+            # Store the solved emulsion voidage and the tau_s calculation reads it from here
+            v_mf = common._safe_value(model.fs.solid_properties.voidage_mf)
+            if v_mf is not None:
+                meta["voidage_mf"] = v_mf
         with open(common.axial_meta(args.reactor, args.scale, args.suffix), "w") as f:
             json.dump(meta, f, indent=2)
 

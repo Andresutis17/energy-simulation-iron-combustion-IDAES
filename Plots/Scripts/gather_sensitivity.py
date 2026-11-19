@@ -37,6 +37,11 @@ FAMILIES = {
         
         "grid": [0.99, 0.75, 0.50, 0.30, 0.25, 0.20, 0.10, 0.05],
     },
+    "reduction_lambda_H2": {
+        "reactor": "reduction", "knob": "lambda_H2", "route": "cold",
+
+        "grid": [1.58, 1.25, 1.0, 0.75, 0.50, 0.25, 0.10],
+    },
     "reduction_T_solid": {
         "reactor": "reduction", "knob": "T_solid", "route": "cold",
         
@@ -72,6 +77,13 @@ FAMILIES = {
         "reactor": "dry", "knob": "y_O2", "route": "ladder",
        
         "grid": [0.21, 0.18, 0.15, 0.12, 0.10, 0.08, 0.05, 0.21],
+    },
+    "dry_lambda_O2": {
+        "reactor": "dry", "knob": "lambda_O2", "route": "ladder",
+
+        "grid": [1.501143622272, 1.25, 1.0, 0.75, 0.50, 0.25,
+                 1.501143622272],
+        "timeout": 7200,
     },
     "dry_T_solid": {
         "reactor": "dry", "knob": "T_solid", "route": "ladder",
@@ -120,6 +132,11 @@ FAMILIES = {
 
         "grid": [0.99, 0.75, 0.50, 0.30, 0.25, 0.20, 0.10, 0.05],
     },
+    "wet_lambda_steam": {
+        "reactor": "wet", "knob": "lambda_steam", "route": "cold",
+
+        "grid": [1.24, 1.0, 0.75, 0.50, 0.25, 0.10],
+    },
     "reduction_H": {
         "reactor": "reduction", "knob": "H", "route": "cold",
 
@@ -153,12 +170,28 @@ FROZEN_FAMILIES = {
     "reduction_T_gas",
 }
 
-# Columns of every sweep CSV, new ones go at the end
+# Columns of every sweep CSV
 FIELDS = ["reactor", "knob", "value", "abs_flow", "path", "X_solid", "X_gas",
           "T_gas_out", "T_solid_out", "Ts_in", "n_bad", "err_mass",
           "gas_feasible", "banner_ok", "valid", "term",
           "X_prod", "w_out_Fe2O3", "w_out_Fe3O4", "w_out_FeO", "w_out_Fe",
-          "Tg_in", "H"]
+          "Tg_in", "H",
+          "T_gas_in", "T_solid_in", "deltaT_gas", "deltaT_solid",
+          "gas_mol_in", "gas_mol_out", "solid_mass_in", "solid_mass_out",
+          "velocity_superficial_gas", "velocity_mf", "u_g_over_umf",
+          "deltaP", "lambda_requested", "lambda_calculated",
+          "lambda_abs_error", "lambda_stoich", "lambda_O2", "lambda_steam",
+          "lambda_H2", "O2_utilization", "steam_utilization",
+          "H2_utilization", "reactant_utilization", "net_H2_production",
+          "net_H2O_production", "Fe_conversion", "Fe2O3_conversion",
+          "reduction_degree", "metallization_degree",
+          "y_in_sum", "y_out_sum", "w_in_sum", "w_out_sum",
+          "y_in_O2", "y_in_N2", "y_in_CO2", "y_in_H2O", "y_in_H2",
+          "y_out_O2", "y_out_N2", "y_out_CO2", "y_out_H2O", "y_out_H2",
+          "n_in_O2", "n_in_N2", "n_in_CO2", "n_in_H2O", "n_in_H2",
+          "n_out_O2", "n_out_N2", "n_out_CO2", "n_out_H2O", "n_out_H2",
+          "w_in_Fe2O3", "w_in_Fe3O4", "w_in_FeO", "w_in_Fe",
+          "w_in_Al2O3", "w_out_Al2O3"]
 
 # Max seconds per run
 TIMEOUT_COLD = {"reduction": 1800, "wet": 2400}
@@ -182,6 +215,7 @@ DP_SOFT_GATE = False
 
 # dp= 28 mm runs are stiffer, so more time
 def timeout_of(reactor):
+    """Per solve timeout in seconds"""
     return int(TIMEOUT_COLD.get(reactor, 2400) * (1.5 if DP_MM else 1.0))
 
 
@@ -304,7 +338,7 @@ def preflight():
                       flush=True)
             ok = ok and good
     if not ok:
-        sys.exit("Health check failed")
+        sys.exit("Check failed")
 
 def run_cold_point(fam, spec, value):
     """
@@ -405,7 +439,7 @@ def main():
         else:
             rest.append(a)
     if (dp_arg is None) != (suf_arg is None):
-        sys.exit("")
+        sys.exit("--dp and --suffix go together")
     if dp_arg is not None:
         DP_MM = float(dp_arg)
         SUFFIX = suf_arg if suf_arg.startswith("_") else f"_{suf_arg}"
@@ -445,7 +479,7 @@ def main():
     elif which in FAMILIES:
         targets = [which]
     else:
-        sys.exit(f"unknown family '{which}'")
+        sys.exit(f"unknown family")
     for fam in targets:
         run_family(fam)
 

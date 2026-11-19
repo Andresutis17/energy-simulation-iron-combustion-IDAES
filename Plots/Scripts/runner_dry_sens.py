@@ -14,7 +14,34 @@ from runner_axial import endpoint, load_module
 
 
 # Knobs: model inputs used in sweeps
-KNOBS = ["T_solid", "T_gas", "y_O2", "porosity", "gas_flow", "solid_flow", "H"]
+KNOBS = ["T_solid", "T_gas", "y_O2", "lambda_O2", "porosity", "gas_flow",
+         "solid_flow", "throughput", "H"]
+
+def _fe_metal_feed(target):
+    """
+    kg/s of Fe metal in the solid feed
+    """
+    return (target["solid_flow_mass"] * target.get("w_Fe", 0.0)
+            / common.MW_S["Fe"])
+
+
+def _set_o2_feed(target, y_o2):
+    """Set the O2 fraction, N2 is the rest"""
+    traces = sum(target.get(f"y_{sp}", 0.0) for sp in ("H2O", "CO2", "H2"))
+    y_n2 = 1.0 - y_o2 - traces
+    if y_o2 < 0.0 or y_n2 < 0.0:
+        raise ValueError(f"Impossible error")
+    target["y_O2"] = y_o2
+    target["y_N2"] = y_n2
+
+
+def _set_model_o2_feed(b, target):
+    """Fix the model inlet to the target composition"""
+    b.gas_inlet.mole_frac_comp[0, "O2"].fix(target["y_O2"])
+    b.gas_inlet.mole_frac_comp[0, "N2"].fix(target["y_N2"])
+    b.gas_inlet.mole_frac_comp[0, "H2O"].fix(target["y_H2O"])
+    b.gas_inlet.mole_frac_comp[0, "CO2"].fix(target["y_CO2"])
+    b.gas_inlet.mole_frac_comp[0, "H2"].fix(target["y_H2"])
 
 
 def apply_knob(m, mod, base, knob, value):
@@ -40,13 +67,25 @@ def apply_knob(m, mod, base, knob, value):
         mod.set_case(m, base["D"], base["H"], base["n_orifice"],
                      base["gas_flow_mol"], base["solid_flow_mass"] * value,
                      base["gas_T"], base["solid_T"])
+    elif knob == "throughput":
+        # Scale both flows together. Lambda stays konstant and u0/umf changes
+        mod.set_case(m, base["D"], base["H"], base["n_orifice"],
+                     base["gas_flow_mol"] * value,
+                     base["solid_flow_mass"] * value,
+                     base["gas_T"], base["solid_T"])
     elif knob == "H":
         mod.set_case(m, base["D"], value, base["n_orifice"],
                      base["gas_flow_mol"], base["solid_flow_mass"],
                      base["gas_T"], base["solid_T"])
     elif knob == "y_O2":
-        b.gas_inlet.mole_frac_comp[0, "O2"].fix(value)
-        b.gas_inlet.mole_frac_comp[0, "N2"].fix(1.0 - value)
+        target = target_with_knob(base, knob, value)
+        _set_model_o2_feed(b, target)
+    elif knob == "lambda_O2":
+        target = target_with_knob(base, knob, value)
+        mod.set_case(m, target["D"], target["H"], target["n_orifice"],
+                     target["gas_flow_mol"], target["solid_flow_mass"],
+                     target["gas_T"], target["solid_T"])
+        _set_model_o2_feed(b, target)
     elif knob == "porosity":
         b.solid_inlet.particle_porosity[0].fix(value)
     else:
@@ -63,13 +102,19 @@ def target_with_knob(base, knob, value):
     elif knob == "T_gas":
         tgt["gas_T"] = value
     elif knob == "y_O2":
-        tgt["y_O2"] = value
-        tgt["y_N2"] = 1.0 - value
+        _set_o2_feed(tgt, value)
+    elif knob == "lambda_O2":
+        # Keep the lab feed as it is set up
+        stoich_o2 = 0.75 * _fe_metal_feed(tgt)
+        tgt["gas_flow_mol"] = value * stoich_o2 / tgt["y_O2"]
     elif knob == "porosity":
         tgt["particle_porosity"] = value
     elif knob == "gas_flow":
         tgt["gas_flow_mol"] = base["gas_flow_mol"] * value
     elif knob == "solid_flow":
+        tgt["solid_flow_mass"] = base["solid_flow_mass"] * value
+    elif knob == "throughput":
+        tgt["gas_flow_mol"] = base["gas_flow_mol"] * value
         tgt["solid_flow_mass"] = base["solid_flow_mass"] * value
     elif knob == "H":
         tgt["H"] = value
@@ -82,15 +127,18 @@ def abs_flow_of(tgt, knob):
     """
     if knob == "gas_flow":
         return tgt["gas_flow_mol"]
+    if knob == "lambda_O2":
+        return tgt["gas_flow_mol"]
     if knob == "solid_flow":
         return tgt["solid_flow_mass"]
+    if knob == "throughput":
+        return tgt["gas_flow_mol"]
     return None
 
 
 def report_step(mod, m, results, tgt, knob, v, path, drift=None):
     """
-    Report one solved step, builds the point dict, check it and, print
-    the json line 
+    Report one solved step, builds the point dict, check it and, print the json line 
     """
     report = endpoint(m, "dry")
     validity = mod._validity_banner(results)
@@ -105,6 +153,11 @@ def report_step(mod, m, results, tgt, knob, v, path, drift=None):
     }
     if drift is not None:
         point["anchor_drift_dX"], point["anchor_drift_dT"] = drift
+    if knob == "lambda_O2":
+        calc = report.get("lambda_O2")
+        point["lambda_requested"] = v
+        point["lambda_calculated"] = calc
+        point["lambda_abs_error"] = abs(calc - v) if calc is not None else None
     point["valid"] = (point["n_bad"] == 0
                       and (point["gas_feasible"] is None or point["gas_feasible"])
                       and "optimal" in str(point["term"])
@@ -129,11 +182,13 @@ def main():
         base["particle_dia"] = dp_patch.to_m(args.dp)
     base_value = {"T_solid": base["solid_T"], "T_gas": base["gas_T"],
                   "y_O2": base["y_O2"],
+                  "lambda_O2": (base["gas_flow_mol"] * base["y_O2"]
+                                / (0.75 * _fe_metal_feed(base))),
                   "porosity": base["particle_porosity"],
-                  "gas_flow": 1.0, "solid_flow": 1.0,
+                  "gas_flow": 1.0, "solid_flow": 1.0, "throughput": 1.0,
                   "H": base["H"]}[args.knob]
     if abs(values[0] - base_value) > 1e-9:
-        sys.exit(f"first value {values[0]:g} != base {base_value:g}")
+        sys.exit("The first value is not the base value")
 
     if args.dp is not None:
         m, results, anchor_path, _ = dp_patch.solve_lab_dp(

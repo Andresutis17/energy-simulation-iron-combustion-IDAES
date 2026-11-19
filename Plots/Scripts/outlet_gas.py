@@ -10,6 +10,7 @@ import common
 
 MW_G = {"H2": 2.016e-3, "H2O": 18.015e-3, "N2": 28.014e-3,
         "O2": 31.998e-3}
+
 # Mole fraction floor so a fully swept out product still draws a curve
 FLOOR = 1e-5
 KNOW_Y = {"reduction": "y_H2", "wet": "y_H2O", "dry": "y_O2"}
@@ -19,7 +20,7 @@ BASE_Y = {"reduction": 0.99, "wet": 0.99, "dry": 0.21}
 GAS_SP = {"reduction": ["H2", "H2O"], "wet": ["H2O", "H2"],
           "dry": ["O2"]}
 
-GAS_PROD = "#762a83"
+GAS_PROD = "#e7298a"
 
 
 def y_in_of(reactor, knob, value):
@@ -66,10 +67,44 @@ def row_gas_ws(reactor, knob, row):
     """
     Gas_ws for one sens CSV row
     """
+    direct = {}
+    for sp in GAS_SP[reactor]:
+        key = f"y_out_{sp}"
+        if row.get(key) not in (None, ""):
+            direct[sp] = float(row[key])
+    if direct:
+        tot = sum(yi * MW_G[sp] for sp, yi in direct.items())
+        return {sp: 100.0 * yi * MW_G[sp] / tot
+                for sp, yi in direct.items()} if tot > 0 else {}
     xg = row.get("X_gas")
     if xg in (None, ""):
         return {}
     return gas_ws(reactor, float(xg), y_in_of(reactor, knob, row["value"]))
+
+
+def gas_xs(reactor, x_gas, y_in):
+    """
+    Outlet gas mole fractions in %
+    """
+    y = y_out(reactor, x_gas, y_in)
+    return {sp: 100.0 * yi for sp, yi in y.items()}
+
+
+def row_gas_xs(reactor, knob, row):
+    """
+    Gas_xs for one sens CSV row
+    """
+    direct = {}
+    for sp in GAS_SP[reactor]:
+        key = f"y_out_{sp}"
+        if row.get(key) not in (None, ""):
+            direct[sp] = 100.0 * float(row[key])
+    if direct:
+        return direct
+    xg = row.get("X_gas")
+    if xg in (None, ""):
+        return {}
+    return gas_xs(reactor, float(xg), y_in_of(reactor, knob, row["value"]))
 
 
 def row_gamma(reactor, knob, row):
@@ -79,6 +114,11 @@ def row_gamma(reactor, knob, row):
     """
     if reactor == "dry":
         return None
+    if row.get("y_out_H2O") not in (None, "") and row.get("y_out_H2") not in (None, ""):
+        y_h2o = float(row["y_out_H2O"])
+        y_h2 = float(row["y_out_H2"])
+        den = y_h2o + y_h2
+        return y_h2o / den if den > 0 else None
     xg = row.get("X_gas")
     if xg in (None, ""):
         return None
@@ -88,12 +128,12 @@ def row_gamma(reactor, knob, row):
 
 def add_gas(ax, pairs, reactor, knob):
     """
-    Draws the reacting gas species over pairs 
+    Draws the reacting gas species over pairs in mole %
     """
     hs = []
     for j, sp in enumerate(GAS_SP[reactor]):
         color = common.INK if j == 0 else GAS_PROD
-        xy = sorted((x, row_gas_ws(reactor, knob, row)[sp])
+        xy = sorted((x, row_gas_xs(reactor, knob, row)[sp])
                     for x, row in pairs
                     if row.get("X_gas") not in (None, ""))
         if not xy or max(v for _, v in xy) < 1e-4:
@@ -101,7 +141,7 @@ def add_gas(ax, pairs, reactor, knob):
         ax.plot([a for a, _ in xy], [b for _, b in xy],
                 color=color, ls="-", lw=1.2)
         hs.append(ax.plot([], [], color=color, ls="-", lw=1.2,
-                          label=rf"$w_{{{sp}}}$ (gas)")[0])
+                          label=rf"$y_{{{sp}}}$ (gas)")[0])
     return hs
 
 
@@ -123,9 +163,13 @@ def add_gamma(ax, pairs, reactor, knob, color="#d95f02"):
 
 
 if __name__ == "__main__":
+    # Self-check against the certified base values. Silence = pass
     w = gas_ws("reduction", 28.311, 0.99)
     assert abs(w["H2"] - 21.17) < 0.02, w
     assert abs(w["H2O"] - 74.68) < 0.02, w
+    x = gas_xs("reduction", 28.311, 0.99)
+    assert abs(x["H2"] - 100.0 * 0.99 * (1.0 - 0.28311)) < 1e-9, x
+    assert abs(x["H2O"] - 100.0 * 0.99 * 0.28311) < 3e-3, x
     assert abs(row_gamma("reduction", "y_H2",
                          {"value": 0.99, "X_gas": 28.311})
                - 0.28311) < 1e-4
@@ -136,8 +180,4 @@ if __name__ == "__main__":
     wn = gas_ws("dry", 13.85, 0.21)
     y = y_out("dry", 13.85, 0.21)
     assert abs(y["O2"] / y["N2"] - 0.21 * (1 - 0.1385) / 0.79) < 1e-12
-    print("outlet_gas self-test OK")
-    print(f"  red base  w: H2 {w['H2']:.2f} H2O {w['H2O']:.2f} "
-          f"N2 {w['N2']:.2f}  Gamma {0.28311:.5f}")
-    print(f"  wet base  Gamma {g:.5f}")
-    print(f"  dry base  w: O2 {wd['O2']:.2f} N2 {wd['N2']:.2f}")
+

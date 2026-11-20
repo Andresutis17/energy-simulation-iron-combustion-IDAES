@@ -38,7 +38,7 @@ LAB_MODULES = {
     "wet": ("Wet_Oxidation_Reactor_Lab.py", "wet_reactions"),
     "red": ("Reduction_Reactor_Lab.py", "reduction_reactions"),
 }
-_OUT = os.path.join(ROOT, "outputs")
+_OUT = os.path.join(ROOT, "outputs_energy")
 os.makedirs(_OUT, exist_ok=True)
 sys.path.insert(0, MODEL_DIR)
 

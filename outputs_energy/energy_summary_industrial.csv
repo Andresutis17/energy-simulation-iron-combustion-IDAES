@@ -1,0 +1,19 @@
+reactor,quantity,value,unit
+Reduction,H2 consumed(+)/produced(-),89.1768736576214,mol/s
+Reduction,H2 power LHV,21.565322319877417,MW
+Reduction,H2 power HHV,25.490317566294504,MW
+Reduction,reaction heat (+released),-2.7882524059104643,MW
+Reduction,gas enthalpy change,0.30864422731416113,MW
+Reduction,solid enthalpy change,-3.096818535379844,MW
+Steam,H2 consumed(+)/produced(-),79.6686452901692,mol/s
+Steam,H2 power LHV,19.26598168339857,MW
+Steam,H2 power HHV,22.772485569741963,MW
+Steam,reaction heat (+released),2.6738599203410947,MW
+Steam,gas enthalpy change,0.8528671392570659,MW
+Steam,solid enthalpy change,1.8209927810840263,MW
+Air,H2 consumed(+)/produced(-),0.0,mol/s
+Air,H2 power LHV,0.0,MW
+Air,H2 power HHV,0.0,MW
+Air,reaction heat (+released),15.286834589982314,MW
+Air,gas enthalpy change,14.030712826535016,MW
+Air,solid enthalpy change,1.2561217634472504,MW
